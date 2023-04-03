@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ButtonResetPost from "./buttonResetPost/ButtonResetPost";
+import CommentTextArea from "./commentTextArea/CommentTextArea";
 
 const CommentForm = () => {
   const [commentContent, setCommentContent] = useState("");
@@ -12,17 +13,18 @@ const CommentForm = () => {
       {!hide && (
         <>
           <div>
-            <textarea
-              value={commentContent}
-              onChange={(e) => setCommentContent(e.target.value)}
-              placeholder="ya ?"
+            <CommentTextArea
+              commentContent={commentContent}
+              setCommentContent={setCommentContent}
             />
           </div>
-          <ButtonResetPost
-            commentContent={commentContent}
-            setCommentContent={setCommentContent}
-            setHide={setHide}
-          />
+          <div>
+            <ButtonResetPost
+              commentContent={commentContent}
+              setCommentContent={setCommentContent}
+              setHide={setHide}
+            />
+          </div>
         </>
       )}
     </>

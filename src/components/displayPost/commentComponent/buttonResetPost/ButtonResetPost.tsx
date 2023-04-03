@@ -1,6 +1,7 @@
-import LoginComponent from "@/components/login/Login";
 import { fetchCreateBlogComment } from "@/fetchApiCalls/fetchApiCalls";
 import { IUserSession } from "@/pages/api/blog-post/handle";
+import rotuerReplace from "@/util/routerReplace";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
@@ -14,7 +15,7 @@ const ButtonResetPost = ({
   const session: IUserSession = sessionData as IUserSession;
   let commenterId: string = session?.user?._id;
 
-  const { query } = useRouter();
+  const { query, asPath } = useRouter();
   console.log(query, "router data");
   const postId = query?.id as string;
 
@@ -33,15 +34,27 @@ const ButtonResetPost = ({
    *
    * post a new comment to the current post
    *
+   * fetch call returns {success:boolean}
+   * based on which the current page is reloaded to get the lastest comments
    *
    */
-  const postCommentHandler = () => {
+  const postCommentHandler = async () => {
     if (commentContent !== "") {
       console.log("post this", commentContent);
 
-      fetchCreateBlogComment(commenterId, commentContent, postId);
+      const success = await fetchCreateBlogComment(
+        commenterId,
+        commentContent,
+        postId
+      );
       setCommentContent("");
       setHide((prev: any) => !prev);
+
+      if (success?.sucess) {
+        // rotuerReload();
+        rotuerReplace(asPath);
+      }
+
       return;
     }
 

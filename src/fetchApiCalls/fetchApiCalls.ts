@@ -93,12 +93,15 @@ export const fetchCreateBlogComment = async (
 
     if (!response.ok) {
       console.log("error", json.error);
+      return {sucess:false}
     }
 
     if (response.ok) {
       console.log("success", json);
+      return {sucess:true}
     }
   } catch (error) {
     console.log("error", error);
+    return {sucess:false}
   }
 };
