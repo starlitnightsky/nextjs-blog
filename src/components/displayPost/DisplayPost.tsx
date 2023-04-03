@@ -33,7 +33,9 @@ const DisplayPost = ({
       </div>
 
       <CommentForm />
-      <CommentComponent />
+      {parsedAllCurrentCommentData?.map((commentData: any) => (
+        <CommentComponent key={commentData?._id} commentData={commentData} />
+      ))}
     </>
   );
 };

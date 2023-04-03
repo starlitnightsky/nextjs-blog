@@ -1,9 +1,10 @@
 import React from "react";
 
-const CommentComponent = () => {
+const CommentComponent = ({ commentData }: any) => {
   return (
     <>
-      <div>Comments looped</div>
+      <p>{commentData.commentContent}</p>
+      <p>{commentData.createdAt}</p>
     </>
   );
 };
