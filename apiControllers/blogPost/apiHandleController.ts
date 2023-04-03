@@ -68,3 +68,19 @@ export const apiGetAllBlogPost = async (
 
   return res.status(200).json(allPosts);
 };
+
+export const apiGetAllBlogCount = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  connectDb();
+
+  let allPostsCount: number | any;
+  try {
+    allPostsCount = await Post.find({}).count();
+  } catch (error: ErrorData | any) {
+    return res.status(400).json({ error: error.message });
+  }
+
+  return res.status(200).json(allPostsCount);
+};

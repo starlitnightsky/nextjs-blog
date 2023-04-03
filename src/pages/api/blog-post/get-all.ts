@@ -3,7 +3,10 @@
 //get posts associated with a user
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { apiGetAllBlogPost } from "../../../../apiControllers/blogPost/apiHandleController";
+import {
+  apiGetAllBlogPost,
+  apiGetAllBlogCount,
+} from "../../../../apiControllers/blogPost/apiHandleController";
 
 export default async function blogPostGetAll(
   req: NextApiRequest,
@@ -11,5 +14,9 @@ export default async function blogPostGetAll(
 ) {
   if (req.method === "POST") {
     apiGetAllBlogPost(req, res);
+  }
+
+  if (req.method === "GET") {
+    apiGetAllBlogCount(req, res);
   }
 }
