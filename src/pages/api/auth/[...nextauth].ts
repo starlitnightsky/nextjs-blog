@@ -58,21 +58,17 @@ export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
     async session({ session, user, token }) {
-      session.user = token;
+      const { _doc } = token;
+      const { password, ...userData } = _doc;
+      session.user = userData;
+
       return session;
     },
-    async jwt({ token, user, account, profile, isNewUser }: any) {
-      token._id = user?._id;
-      token.role = user?.role;
-      token.createdAt = user?.createdAt;
-      return {
-        token,
-        //  ,
-        //   email: user?.email,
-        //   role: user?.role,
-        //   createdAt: user?.createdAt,
-        //   _id: user?._id,
-      };
+    async jwt({ token, user, account, profile, isNewUser }) {
+      const newToken = { ...token };
+      const newUser = { ...user };
+      console.log(token);
+      return { ...newToken, ...newUser };
     },
   },
 
