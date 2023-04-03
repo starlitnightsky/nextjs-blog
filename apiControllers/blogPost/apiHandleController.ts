@@ -11,6 +11,7 @@ interface PostData {
 }
 
 interface ErrorData {
+  error: string;
   message: string;
 }
 
@@ -39,4 +40,31 @@ export const apiCreateBlogPost = async (
   }
 
   return res.status(201).json(newPost);
+};
+
+export const apiGetAllBlogPost = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  connectDb();
+
+  const { partNumber } = req.body;
+  const itemsPerPage = 3;
+
+  if (partNumber === "") {
+    return res.status(400).json({ error: "fill all fields" });
+  }
+  let allPosts: undefined | PostData | PostData[] | any[];
+  try {
+    allPosts = await Post.find({})
+      .sort({
+        updatedAt: -1,
+      })
+      .skip(partNumber * itemsPerPage)
+      .limit(itemsPerPage);
+  } catch (error: ErrorData | any) {
+    return res.status(400).json({ error: error.message });
+  }
+
+  return res.status(200).json(allPosts);
 };
