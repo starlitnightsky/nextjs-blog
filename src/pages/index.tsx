@@ -1,6 +1,6 @@
 import PaginationComponent from "@/components/pagination/PaginationComponent";
 
-import { serverSideBlogCount } from "@/getServerSideCalls/getServerSideCalls";
+import { serverSideBlogCount } from "@/getServerSideCalls/getServerSideCalls-Index-Pagination";
 import { useState, useEffect } from "react";
 
 import { Oval } from "react-loader-spinner";
