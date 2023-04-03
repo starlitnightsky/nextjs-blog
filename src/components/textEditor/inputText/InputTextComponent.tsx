@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useTextEditorContext } from "../hooks/useTextEditorContext";
 const InputTextComponent = () => {
-  const [content, setContent] = useState("");
+  const { title, setTitle } = useTextEditorContext();
   return (
     <>
       <input
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         placeholder="ya ?"
       />
     </>

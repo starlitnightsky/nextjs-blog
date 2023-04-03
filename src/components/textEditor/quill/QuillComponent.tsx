@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 // import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useTextEditorContext } from "../hooks/useTextEditorContext";
 
 const modules = {
   toolbar: [
@@ -33,11 +34,8 @@ const formats = [
   "image",
 ];
 
-
-
 const QuillComponent = () => {
-  const [deltaValue, setDeltaValue] = useState("");
-  const [htmlValue, setHtmlValue] = useState("");
+  const { delta, setDelta, htmlData, setHtmlData } = useTextEditorContext();
 
   const onEditorChange = (
     value: string,
@@ -48,8 +46,8 @@ const QuillComponent = () => {
     console.log({ value, delta, source, editor });
     console.log(editor.getContents());
     console.log(editor.getHTML());
-    setDeltaValue(editor.getContents());
-    setHtmlValue(editor.getHTML());
+    setDelta(editor.getContents());
+    setHtmlData(editor.getHTML());
   };
 
   /**
@@ -81,7 +79,7 @@ const QuillComponent = () => {
   return (
     <ReactQuill
       theme="snow"
-      value={deltaValue}
+      value={delta}
       //   value={parsed} --> passing parsed delta object to set editor with data
       //   onChange={setValue}
       modules={modules}
