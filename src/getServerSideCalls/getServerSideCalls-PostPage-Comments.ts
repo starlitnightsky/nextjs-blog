@@ -80,7 +80,9 @@ const getAllBlogComments = async (params: any) => {
   let allBlogComments: any[] | string | any;
 
   try {
-    allBlogComments = await Comment.find({ postId });
+    allBlogComments = await Comment.find({ postId }).sort({
+      createdAt: -1,
+    });
     allBlogComments = JSON.stringify(allBlogComments);
   } catch (error: any) {
     allBlogComments = JSON.stringify([]);
