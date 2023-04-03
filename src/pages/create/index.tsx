@@ -1,11 +1,14 @@
 import TextEditor from "@/components/textEditor/TextEditor";
-import React from "react";
+import React, { useState } from "react";
+import textEditorContextProvider from "@/components/textEditor/hooks/textEditorContext";
 
 const CreatePost = () => {
+  const [title, setTitle] = useState<string>("");
+  const [delta, setDelta] = useState("");
   return (
-    <div>
+    <textEditorContextProvider>
       <TextEditor />
-    </div>
+    </textEditorContextProvider>
   );
 };
 
