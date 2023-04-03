@@ -3,7 +3,7 @@ import { Schema, model, models } from "mongoose";
 const CommentSchema = new Schema(
   {
     commenterId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
     },
     commentConnent: {
@@ -11,7 +11,7 @@ const CommentSchema = new Schema(
       required: true,
     },
     postId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
     },
   },
