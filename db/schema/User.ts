@@ -121,5 +121,6 @@ UserSchema.statics.login = async function (email: string, password: string) {
 };
 
 const User: IUserModel =
-  models.User || model<IUserDocument, IUserModel>("User", UserSchema);
+  (models.User as IUserModel) ||
+  model<IUserDocument, IUserModel>("User", UserSchema);
 export default User;

@@ -3,10 +3,12 @@ import { redirectHome } from "../login/loginUtil";
 import { useTextEditorContext } from "../textEditor/hooks/useTextEditorContext";
 import { fetchCreateBlogPost } from "@/fetchApiCalls/fetchApiCalls";
 import { useSession } from "next-auth/react";
+import { IUserSession } from "@/pages/api/blog-post/handle";
 
 const ButtonCancelSave = () => {
   const { title, delta, htmlData } = useTextEditorContext();
-  const { data: session } = useSession();
+  const { data: sessionData } = useSession();
+  const session: IUserSession = sessionData as IUserSession;
   let authorId: string = session?.user?._id;
 
   const onClickHandler = () => {

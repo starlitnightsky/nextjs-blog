@@ -20,6 +20,7 @@ export interface IUserSessionData {
   email: string;
   role: string;
   createdAt: string;
+  _id: string;
 }
 export interface IUserSession extends Session {
   user: IUserSessionData;

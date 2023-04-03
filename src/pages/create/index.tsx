@@ -3,10 +3,11 @@ import React from "react";
 import TextEditorContextProvider from "@/components/textEditor/hooks/textEditorContext";
 import { useSession } from "next-auth/react";
 import LoginComponent from "@/components/login/Login";
+import { IUserSession } from "../api/blog-post/handle";
 
 const CreatePost = () => {
-  const { data: session, status } = useSession();
-
+  const { data: sessionData, status } = useSession();
+  const session: IUserSession = sessionData as IUserSession;
   console.log(session, status);
 
   if (status === "loading") {
