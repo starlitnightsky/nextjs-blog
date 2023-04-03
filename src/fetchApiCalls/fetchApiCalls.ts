@@ -17,6 +17,7 @@ export const domain = "http://localhost:3000";
  */
 export const fetchCreateBlogPost = async (
   title: string,
+  description: string,
   bodyDelta: any,
   bodyHTML: string,
   authorId: string
@@ -27,6 +28,7 @@ export const fetchCreateBlogPost = async (
       method: "POST",
       body: JSON.stringify({
         title,
+        description,
         bodyDelta: newDelta,
         bodyHTML,
         authorId,

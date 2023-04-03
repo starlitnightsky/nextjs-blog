@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { IUserSession } from "@/pages/api/blog-post/handle";
 
 const ButtonCancelSave = () => {
-  const { title, delta, htmlData } = useTextEditorContext();
+  const { title, description, delta, htmlData } = useTextEditorContext();
   const { data: sessionData } = useSession();
   const session: IUserSession = sessionData as IUserSession;
   let authorId: string = session?.user?._id;
@@ -19,7 +19,7 @@ const ButtonCancelSave = () => {
         authorId,
      */
     console.log("oof ");
-    fetchCreateBlogPost(title, delta, htmlData, authorId);
+    fetchCreateBlogPost(title, description, delta, htmlData, authorId);
   };
 
   return (

@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 interface PostData {
   title: string;
+  description: string;
   bodyDelta: any;
   bodyHTML: string;
   authorId: string;
@@ -21,10 +22,16 @@ export const apiCreateBlogPost = async (
 ) => {
   connectDb();
 
-  const { title, bodyDelta, bodyHTML, authorId } = req.body;
+  const { title, description, bodyDelta, bodyHTML, authorId } = req.body;
   let newPost: undefined | PostData | any[];
 
-  if (title === "" || bodyDelta === "" || bodyHTML === "" || authorId === "") {
+  if (
+    title === "" ||
+    description === "" ||
+    bodyDelta === "" ||
+    bodyHTML === "" ||
+    authorId === ""
+  ) {
     return res.status(400).json({ error: "fill all fields" });
   }
 
@@ -33,7 +40,13 @@ export const apiCreateBlogPost = async (
   }
 
   try {
-    newPost = await Post.create({ title, bodyDelta, bodyHTML, authorId });
+    newPost = await Post.create({
+      title,
+      description,
+      bodyDelta,
+      bodyHTML,
+      authorId,
+    });
   } catch (error: ErrorData | any) {
     // console.log(error);
     return res.status(400).json({ error: error.message });

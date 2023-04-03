@@ -3,6 +3,8 @@ import { useState, createContext, SetStateAction, Dispatch } from "react";
 interface ITextEditorContext {
   title: string;
   setTitle: Dispatch<SetStateAction<string>>;
+  description: string;
+  setDescription: Dispatch<SetStateAction<string>>;
   delta: any;
   setDelta: Dispatch<SetStateAction<any>>;
   htmlData: string;
@@ -12,6 +14,8 @@ interface ITextEditorContext {
 export const textEditorContext = createContext<ITextEditorContext>({
   title: "",
   setTitle: () => {},
+  description: "",
+  setDescription: () => {},
   delta: "",
   setDelta: () => {},
   htmlData: "",
@@ -20,6 +24,7 @@ export const textEditorContext = createContext<ITextEditorContext>({
 
 const TextEditorContextProvider = ({ children }: any) => {
   const [title, setTitle] = useState<string>("oof");
+  const [description, setDescription] = useState<string>("des");
   const [delta, setDelta] = useState("");
   const [htmlData, setHtmlData] = useState<string>("");
 
@@ -32,6 +37,8 @@ const TextEditorContextProvider = ({ children }: any) => {
         setDelta,
         htmlData,
         setHtmlData,
+        description,
+        setDescription,
       }}
     >
       {children}
