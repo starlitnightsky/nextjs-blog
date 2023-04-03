@@ -2,15 +2,11 @@ import { Schema, model, models } from "mongoose";
 
 const PostSchema = new Schema(
   {
-    titleHTML: {
+    title: {
       type: String,
       required: true,
     },
     bodyHTML: {
-      type: String,
-      required: true,
-    },
-    titleDelta: {
       type: String,
       required: true,
     },
