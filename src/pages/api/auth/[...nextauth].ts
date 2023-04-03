@@ -11,6 +11,10 @@ import clientPromise from "../../../../db/dbPromiseForAuth/promiseForAuth";
 interface UserData {
   email: string;
   role: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+  _id: string;
 }
 
 interface ErrorData {
@@ -59,7 +63,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, user, token }) {
       const { _doc } = token;
-      const { password, ...userData } = _doc;
+      const { password, ...userData } = _doc as UserData;
       session.user = userData;
 
       return session;
