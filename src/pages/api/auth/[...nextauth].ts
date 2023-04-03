@@ -1,4 +1,6 @@
 import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
+
 import { compare } from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import connectDb from "../../../../db/connectDb/connectDb";
@@ -15,7 +17,7 @@ interface ErrorData {
   message: string;
 }
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
@@ -58,4 +60,6 @@ export default NextAuth({
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+export default NextAuth(authOptions);
