@@ -17,7 +17,7 @@ const SignupComponent = (): JSX.Element => {
   return (
     <div>
       <section>
-        <p>Don't have an account?</p>
+        <p>Existing User!</p>
         <Link href={"/login"}>Log In</Link>
       </section>
 

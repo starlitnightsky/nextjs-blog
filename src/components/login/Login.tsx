@@ -9,7 +9,7 @@ const LoginComponent = () => {
   return (
     <div>
       <section>
-        <p>Don't have an account?</p>
+        <p>Need an account!</p>
         <Link href={"/create-account"}>Sign Up</Link>
       </section>
 

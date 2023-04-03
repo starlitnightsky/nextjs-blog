@@ -3,7 +3,7 @@ import LoginComponent from "@/components/login/Login";
 import { useSession } from "next-auth/react";
 import { redirectHome } from "@/components/login/loginUtil";
 
-const login = () => {
+const Login = () => {
   const { status } = useSession();
 
   if (status === "loading") {
@@ -19,4 +19,4 @@ const login = () => {
   }
 };
 
-export default login;
+export default Login;
