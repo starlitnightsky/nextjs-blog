@@ -8,21 +8,8 @@
 
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import connectDb from "../../../../db/connectDb/connectDb";
 
-import Post from "../../../../db/schema/Post";
 import { apiCreateBlogPost } from "../../../../apiControllers/blogPost/apiHandleController";
-
-interface PostData {
-  title: string;
-  bodyDelta: any;
-  bodyHTML: string;
-  authorId: string;
-}
-
-interface ErrorData {
-  message: string;
-}
 
 export default async function blogPostHandler(
   req: NextApiRequest,
