@@ -14,7 +14,7 @@ import { apiCreateBlogPost } from "../../../../apiControllers/blogPost/apiHandle
 
 const secret = process.env.NEXTAUTH_JWT_SECRET;
 
-interface TokenData {
+export interface TokenData {
   email: string;
   role: string;
   createdAt: string;

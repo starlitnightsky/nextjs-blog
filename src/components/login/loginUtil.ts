@@ -16,6 +16,6 @@ export const loginUser = async (
   res.error ? console.log(res.error) : redirectHome();
 };
 
-const redirectHome = () => {
+export const redirectHome = () => {
   Router.push("/");
 };

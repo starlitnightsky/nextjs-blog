@@ -52,21 +52,30 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    // signIn: "/login",
+    signIn: "/login",
   },
+  session: { strategy: "jwt" },
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
+    async session({ session, user, token }) {
+      session.user = token;
+      return session;
+    },
     async jwt({ token, user, account, profile, isNewUser }: any) {
+      token._id = user?._id;
+      token.role = user?.role;
+      token.createdAt = user?.createdAt;
       return {
         token,
-        email: user?.email,
-        role: user?.role,
-        createdAt: user?.createdAt,
-        _id: user?._id,
+        //  ,
+        //   email: user?.email,
+        //   role: user?.role,
+        //   createdAt: user?.createdAt,
+        //   _id: user?._id,
       };
     },
   },
-  session: { strategy: "jwt" },
+
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
