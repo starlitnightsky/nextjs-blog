@@ -3,7 +3,12 @@ import { useRouter } from "next/router";
 
 const PaginationComponent = ({ allBlogCount }: any) => {
   const itemsPerPage = 3;
-  const paginationCount = Math.ceil(allBlogCount / itemsPerPage);
+  let paginationCount = 0;
+  if (typeof allBlogCount === "number") {
+    paginationCount = Math.ceil(allBlogCount / itemsPerPage);
+  }
+
+
   console.log(paginationCount, "pagination count");
 
   console.log(Array.from(Array(paginationCount).keys()), "pagination count");
