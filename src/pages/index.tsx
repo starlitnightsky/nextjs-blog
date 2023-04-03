@@ -1,9 +1,12 @@
+import PaginationComponent from "@/components/pagination/PaginationComponent";
+import { fetchGetBlogCount } from "@/fetchApiCalls/fetchApiCalls";
 import { useState, useEffect } from "react";
 
 import { Oval } from "react-loader-spinner";
 
-export default function Home() {
+export default function Home({ allBlogCount }: any) {
   const [loading, setLoading] = useState<boolean>(true);
+  console.log(allBlogCount, "getServerSideProps");
 
   return (
     <div className="container-fluid mt-5">
@@ -32,6 +35,19 @@ export default function Home() {
           </div>
         )}
       </div>
+      <PaginationComponent allBlogCount={allBlogCount} />
     </div>
   );
+}
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  // const res = await fetch(domain + "/api/blog-post/get-all");
+  // const data = await res.json();
+
+  const allBlogCount = await fetchGetBlogCount();
+
+  // Pass data to the page via props
+  return { props: { allBlogCount } };
 }
