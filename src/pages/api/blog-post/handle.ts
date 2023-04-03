@@ -8,22 +8,21 @@
 
 
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]";
 
-import { JWT, getToken } from "next-auth/jwt";
 import { apiCreateBlogPost } from "../../../../apiControllers/blogPost/apiHandleController";
+import { Session } from "next-auth";
 
 const secret = process.env.NEXTAUTH_JWT_SECRET;
 
-export interface TokenData {
+export interface IUserSessionData {
   email: string;
   role: string;
   createdAt: string;
-  iat: string;
-  exp: string;
-  jti: string;
 }
-export interface Token extends JWT {
-  token: TokenData;
+export interface IUserSession extends Session {
+  user: IUserSessionData;
 }
 
 export default async function blogPostHandler(
@@ -31,28 +30,26 @@ export default async function blogPostHandler(
   res: NextApiResponse
 ) {
   /**
-   *  If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
-   *
-   * modified token object contains email , role , createdAt , _id
+   *  get session for api route protection
    */
-  //
-  const token: Token | null = (await getToken({ req, secret })) as Token;
+  const session: IUserSession | null = (await getServerSession(
+    req,
+    res,
+    authOptions
+  )) as IUserSession;
 
-  if (!token) {
-    // if valid token does not exist
-    res.status(401).json({
-      message: "no valid token",
-      token,
-    });
+  if (!session) {
+    // if valid session does not exist
+    res.status(401).json({ message: "You must be logged in." });
     return;
   }
 
-  if (!["admin", "author"].includes(token?.token?.role)) {
+  if (!["admin", "author"].includes(session?.user?.role)) {
     // if curent user not an admin or author
     // catch them
     res.status(401).json({
       message: "only admin / author accoutns allowed",
-      token,
+      session,
     });
     return;
   }
@@ -60,7 +57,7 @@ export default async function blogPostHandler(
   if (req.method !== "POST") {
     return res.status(400).json({
       error: "POST methods only",
-      token,
+      session,
     });
   }
 
