@@ -42,7 +42,7 @@ export default function Home({ allBlogCount, allBlogPostsInParts }: any) {
 
       <div>
         {parsedBlogPosts.map((blogPost: any) => (
-          <BlogPostComponent blogPost={blogPost} />
+          <BlogPostComponent key={blogPost._id} blogPost={blogPost} />
         ))}
       </div>
 

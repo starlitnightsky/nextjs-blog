@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const PaginationComponent = ({ allBlogCount }: any) => {
   const itemsPerPage = 3;
@@ -7,7 +8,6 @@ const PaginationComponent = ({ allBlogCount }: any) => {
   if (typeof allBlogCount === "number") {
     paginationCount = Math.ceil(allBlogCount / itemsPerPage);
   }
-
 
   console.log(paginationCount, "pagination count");
 
@@ -41,9 +41,14 @@ const PaginationComponent = ({ allBlogCount }: any) => {
                   : ""
               }`}
             >
-              <a className="page-link" href="#">
+              <Link
+                className="page-link"
+                href={` ${
+                  asPath === "/" && curr === 0 ? "/" : "/part/" + curr
+                }`}
+              >
                 {curr + 1}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
