@@ -1,0 +1,27 @@
+{
+  // Comments are supported, like tsconfig.json
+  // to use typedoc -> npx typedoc
+  "out": "./public/docs",
+  "entryPointStrategy": "expand",
+  "entryPoints": ["./src/", "./apiControllers", "./db"],
+  // "entryPoints": ["./"],
+  "skipErrorChecking": true,
+  "darkHighlightTheme": "dark-plus",
+  "includeVersion": true,
+  "searchInComments": true,
+  "hideGenerator": true,
+  "commentStyle": "all",
+  "cleanOutputDir": true,
+  "exclude": [
+    "./.cache/**",
+    "./fonts/**",
+    "./public/**",
+    "./static/**",
+    "./.next/**"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "es2015",
+    "target": "es5"
+  }
+}
