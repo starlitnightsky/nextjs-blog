@@ -15,7 +15,7 @@ const PostSchema = new Schema(
       required: true,
     },
     authorId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
     },
   },
