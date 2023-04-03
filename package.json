@@ -9,21 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/mongodb-adapter": "^1.1.1",
+    "@popperjs/core": "^2.11.7",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
+    "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.3",
     "date-fns": "^2.29.3",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "mongodb": "^5.1.0",
     "mongoose": "^7.0.3",
     "next": "13.2.4",
+    "next-auth": "^4.20.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-loader-spinner": "^5.3.4",
-    "typescript": "5.0.3"
+    "typescript": "5.0.3",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.6"
+    "@types/bcrypt": "^5.0.0",
+    "@types/bootstrap": "^5.2.6",
+    "@types/validator": "^13.7.14"
   }
 }
