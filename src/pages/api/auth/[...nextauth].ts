@@ -39,9 +39,11 @@ export default NextAuth({
 
         //@ts-ignore
 
-        let user: undefined | UserData;
-
-        user = await User.login(credentials?.email, credentials?.password);
+        let user: any;
+        user = await User.login(
+          credentials?.email as string,
+          credentials?.password as string
+        );
 
         return user;
       },

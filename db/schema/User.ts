@@ -1,8 +1,19 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Model, Schema, model, models } from "mongoose";
 import bcrypt from "bcrypt";
 import validator from "validator";
 
-const UserSchema = new Schema(
+export interface IUserDocument extends Document {
+  email: string;
+  role: string;
+  password: string;
+}
+
+export interface IUserModel extends Model<IUserDocument> {
+  signup(email: string, password: string, role: string): any;
+  login(email: string, password: string): any;
+}
+
+const UserSchema = new Schema<IUserDocument>(
   {
     email: {
       type: String,
@@ -41,7 +52,11 @@ const UserSchema = new Schema(
  *
  * Passwords are stored in hashform into the db
  */
-UserSchema.statics.signup = async function (email, password, role) {
+UserSchema.statics.signup = async function (
+  email: string,
+  password: string,
+  role: string
+) {
   if (!email || !password || !role) {
     throw Error("All fields must be filled with valid details");
   }
@@ -85,7 +100,7 @@ UserSchema.statics.signup = async function (email, password, role) {
  * returns user object on success
  *
  */
-UserSchema.statics.login = async function (email, password) {
+UserSchema.statics.login = async function (email: string, password: string) {
   if (!email || !password) {
     throw Error("All fields must be filled");
   }
@@ -105,5 +120,6 @@ UserSchema.statics.login = async function (email, password) {
   return user;
 };
 
-const User = models.User || model("User", UserSchema);
+const User: IUserModel =
+  models.User || model<IUserDocument, IUserModel>("User", UserSchema);
 export default User;
