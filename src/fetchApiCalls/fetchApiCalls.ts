@@ -5,12 +5,13 @@ export const fetchCreateBlogPost = async (
   bodyHTML: string,
   authorId: string
 ) => {
+  const newDelta = JSON.stringify(bodyDelta);
   try {
     const response = await fetch("/api/blog-post/handle", {
       method: "POST",
       body: JSON.stringify({
         title,
-        bodyDelta,
+        bodyDelta: newDelta,
         bodyHTML,
         authorId,
       }),

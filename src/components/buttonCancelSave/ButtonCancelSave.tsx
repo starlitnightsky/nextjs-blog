@@ -2,10 +2,12 @@ import React from "react";
 import { redirectHome } from "../login/loginUtil";
 import { useTextEditorContext } from "../textEditor/hooks/useTextEditorContext";
 import { fetchCreateBlogPost } from "@/fetchApiCalls/fetchApiCalls";
+import { useSession } from "next-auth/react";
 
 const ButtonCancelSave = () => {
   const { title, delta, htmlData } = useTextEditorContext();
-  let authorId: string = "";
+  const { data: session } = useSession();
+  let authorId: string = session?.user?._id;
 
   const onClickHandler = () => {
     /**

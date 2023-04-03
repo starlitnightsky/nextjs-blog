@@ -1,8 +1,22 @@
 import React from "react";
 import LoginComponent from "@/components/login/Login";
+import { useSession } from "next-auth/react";
+import { redirectHome } from "@/components/login/loginUtil";
 
 const login = () => {
-  return <LoginComponent />;
+  const { status } = useSession();
+
+  if (status === "loading") {
+    return "Loading or not authenticated...";
+  }
+
+  if (status === "authenticated") {
+    redirectHome();
+
+    return <></>;
+  } else {
+    return <LoginComponent />;
+  }
 };
 
 export default login;
