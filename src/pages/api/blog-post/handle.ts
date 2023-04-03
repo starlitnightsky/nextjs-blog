@@ -9,10 +9,22 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getToken } from "next-auth/jwt";
+import { JWT, getToken } from "next-auth/jwt";
 import { apiCreateBlogPost } from "../../../../apiControllers/blogPost/apiHandleController";
 
 const secret = process.env.NEXTAUTH_JWT_SECRET;
+
+interface TokenData {
+  email: string;
+  role: string;
+  createdAt: string;
+  iat: string;
+  exp: string;
+  jti: string;
+}
+export interface Token extends JWT {
+  token: TokenData;
+}
 
 export default async function blogPostHandler(
   req: NextApiRequest,
@@ -24,7 +36,7 @@ export default async function blogPostHandler(
    * modified token object contains email , role , createdAt , _id
    */
   //
-  const token: any = await getToken({ req, secret });
+  const token: Token | null = (await getToken({ req, secret })) as Token;
 
   if (!token) {
     // if valid token does not exist
