@@ -33,16 +33,62 @@ const formats = [
   "image",
 ];
 
+
+
 const QuillComponent = () => {
-  const [value, setValue] = useState("");
+  const [deltaValue, setDeltaValue] = useState("");
+  const [htmlValue, setHtmlValue] = useState("");
+
+  const onEditorChange = (
+    value: string,
+    delta: any,
+    source: string,
+    editor: any
+  ) => {
+    console.log({ value, delta, source, editor });
+    console.log(editor.getContents());
+    console.log(editor.getHTML());
+    setDeltaValue(editor.getContents());
+    setHtmlValue(editor.getHTML());
+  };
+
+  /**
+   *  sample json stringyfied delta object
+   */
+  const stringify = JSON.stringify({
+    ops: [
+      {
+        attributes: {
+          bold: true,
+        },
+        insert: "gadgadgb ghdgjb ",
+      },
+      {
+        attributes: {
+          header: 1,
+        },
+        insert: "\n",
+      },
+    ],
+  });
+
+  /**
+   * sample parsed delta json
+   * set this variable to "value" prop in ReactQuill component to fill editor with data
+   */
+  const parsed = JSON.parse(stringify);
 
   return (
     <ReactQuill
       theme="snow"
-      value={value}
-      onChange={setValue}
+      value={deltaValue}
+      //   value={parsed} --> passing parsed delta object to set editor with data
+      //   onChange={setValue}
       modules={modules}
       formats={formats}
+      onChange={(value, delta, source, editor) =>
+        onEditorChange(value, delta, source, editor)
+      }
     />
   );
 };
