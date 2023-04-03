@@ -1,5 +1,6 @@
 import PaginationComponent from "@/components/pagination/PaginationComponent";
 import { fetchGetBlogCount } from "@/fetchApiCalls/fetchApiCalls";
+import { serverSideBlogCount } from "@/getServerSideCalls/getServerSideCalls";
 import { useState, useEffect } from "react";
 
 import { Oval } from "react-loader-spinner";
@@ -46,7 +47,7 @@ export async function getServerSideProps() {
   // const res = await fetch(domain + "/api/blog-post/get-all");
   // const data = await res.json();
 
-  const allBlogCount = await fetchGetBlogCount();
+  const allBlogCount = await serverSideBlogCount();
 
   // Pass data to the page via props
   return { props: { allBlogCount } };

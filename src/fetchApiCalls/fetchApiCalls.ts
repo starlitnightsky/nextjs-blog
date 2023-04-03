@@ -51,7 +51,7 @@ export const fetchCreateBlogPost = async (
 
 export const fetchGetBlogCount = async () => {
   try {
-    const response = await fetch(domain + "/api/blog-post/get-all", {
+    const response = await fetch("/api/blog-post/get-all", {
       method: "GET",
     });
     const json = await response.json();
