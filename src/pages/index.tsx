@@ -1,14 +1,16 @@
 import PaginationComponent from "@/components/pagination/PaginationComponent";
-import { fetchGetBlogCount } from "@/fetchApiCalls/fetchApiCalls";
+
 import { serverSideBlogCount } from "@/getServerSideCalls/getServerSideCalls";
 import { useState, useEffect } from "react";
 
 import { Oval } from "react-loader-spinner";
 
+import BlogPostComponent from "@/components/blogPostComponent/BlogPostComponent";
 export default function Home({ allBlogCount, allBlogPostsInParts }: any) {
   const [loading, setLoading] = useState<boolean>(true);
   console.log(allBlogCount, "getServerSideProps");
-  console.log(JSON.parse(allBlogPostsInParts), "allBlogPostsInParts");
+  const parsedBlogPosts = JSON.parse(allBlogPostsInParts);
+  console.log(parsedBlogPosts, "parsedBlogPosts");
 
   return (
     <div className="container-fluid mt-5">
@@ -37,6 +39,13 @@ export default function Home({ allBlogCount, allBlogPostsInParts }: any) {
           </div>
         )}
       </div>
+
+      <div>
+        {parsedBlogPosts.map((blogPost: any) => (
+          <BlogPostComponent blogPost={blogPost} />
+        ))}
+      </div>
+
       <PaginationComponent allBlogCount={allBlogCount} />
     </div>
   );
