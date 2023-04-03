@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 
 import { Oval } from "react-loader-spinner";
 
-export default function Home({ allBlogCount }: any) {
+export default function Home({ allBlogCount, allBlogPostsInParts }: any) {
   const [loading, setLoading] = useState<boolean>(true);
   console.log(allBlogCount, "getServerSideProps");
+  console.log(JSON.parse(allBlogPostsInParts), "allBlogPostsInParts");
 
   return (
     <div className="container-fluid mt-5">
@@ -42,13 +43,16 @@ export default function Home({ allBlogCount }: any) {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
   // Fetch data from external API
   // const res = await fetch(domain + "/api/blog-post/get-all");
   // const data = await res.json();
+  console.log("oofffffffff");
 
-  const allBlogCount = await serverSideBlogCount();
+  const { allBlogCount, allBlogPostsInParts } = await serverSideBlogCount(
+    context
+  );
 
   // Pass data to the page via props
-  return { props: { allBlogCount } };
+  return { props: { allBlogCount, allBlogPostsInParts } };
 }

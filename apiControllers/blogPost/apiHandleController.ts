@@ -3,7 +3,7 @@ import Post from "../../db/schema/Post";
 import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 
-interface PostData {
+export interface PostData {
   title: string;
   description: string;
   bodyDelta: any;
