@@ -70,3 +70,35 @@ export const fetchGetBlogCount = async () => {
     console.log("error", error);
   }
 };
+
+
+export const fetchCreateBlogComment = async (
+  commenterId: string,
+  commentContent: string,
+  postId: string
+) => {
+  try {
+    const response = await fetch("/api/blog-comment/handle", {
+      method: "POST",
+      body: JSON.stringify({
+        commenterId,
+        commentContent,
+        postId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("error", json.error);
+    }
+
+    if (response.ok) {
+      console.log("success", json);
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+};

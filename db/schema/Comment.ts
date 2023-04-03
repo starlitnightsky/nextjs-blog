@@ -6,7 +6,7 @@ const CommentSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
-    commentConnent: {
+    commentContent: {
       type: String,
       required: true,
     },

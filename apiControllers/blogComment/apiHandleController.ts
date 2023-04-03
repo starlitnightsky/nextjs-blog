@@ -6,10 +6,9 @@ import mongoose from "mongoose";
 import Comment from "../../db/schema/Comment";
 
 interface CommentData {
-  title: string;
-  bodyDelta: any;
-  bodyHTML: string;
-  authorId: string;
+  commentContent: string;
+  commenterId: string;
+  postId: string;
 }
 
 interface ErrorData {
@@ -22,10 +21,10 @@ export const apiCreateBlogComment = async (
 ) => {
   connectDb();
 
-  const { commenterId, commentConnent, postId } = req.body;
+  const { commenterId, commentContent, postId } = req.body;
   let newComment: undefined | CommentData | any[];
 
-  if (commenterId === "" || commentConnent === "" || postId === "") {
+  if (commenterId === "" || commentContent === "" || postId === "") {
     return res.status(400).json({ error: "fill all fields" });
   }
 
@@ -37,7 +36,7 @@ export const apiCreateBlogComment = async (
   }
 
   try {
-    newComment = await Comment.create({ commenterId, commentConnent, postId });
+    newComment = await Comment.create({ commenterId, commentContent, postId });
   } catch (error: ErrorData | any) {
     // console.log(error);
     return res.status(400).json({ error: error.message });
