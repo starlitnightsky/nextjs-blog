@@ -81,7 +81,15 @@ const getBlogPostsInParts = async (params: any) => {
   }
 
   try {
-    allPosts = await Post.find({})
+    allPosts = await Post.find(
+      {},
+      {
+        bodyDelta: 0,
+        authorId: 0,
+        bodyHTML: 0,
+        __v: 0,
+      }
+    )
       .sort({
         updatedAt: -1,
       })
