@@ -10,7 +10,7 @@ const LoginComponent = () => {
     <div>
       <section>
         <p>Need an account!</p>
-        <Link href={"/create-account"}>Sign Up</Link>
+        <Link href={"/signup"}>Sign Up</Link>
       </section>
 
       <form onSubmit={(e) => loginUser(e, email, password)}>
