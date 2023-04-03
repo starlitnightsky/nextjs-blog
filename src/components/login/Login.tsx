@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { loginUser } from "./loginUtil";
 
-export default function LoginPage() {
+const LoginComponent = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -10,7 +10,7 @@ export default function LoginPage() {
     <div>
       <section>
         <p>Don't have an account?</p>
-        <Link href={"/sign-up"}>Sign Up</Link>
+        <Link href={"/create-account"}>Sign Up</Link>
       </section>
 
       <form onSubmit={(e) => loginUser(e, email, password)}>
@@ -34,4 +34,5 @@ export default function LoginPage() {
       </form>
     </div>
   );
-}
+};
+export default LoginComponent;

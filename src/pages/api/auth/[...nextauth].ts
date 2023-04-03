@@ -32,7 +32,7 @@ export default NextAuth({
         },
       },
       async authorize(credentials) {
-        console.log(credentials);
+        // console.log(credentials);
         // connect to the DB and find the user
         await connectDb();
         // use user static login method
