@@ -14,7 +14,7 @@ export const textEditorContext = createContext<tEContext>({
   setDelta: () => {},
 });
 
-const textEditorContextProvider = ({ children }: any) => {
+const TextEditorContextProvider = ({ children }: any) => {
   const [title, setTitle] = useState<string>("oof");
   const [delta, setDelta] = useState("");
 
@@ -32,4 +32,4 @@ const textEditorContextProvider = ({ children }: any) => {
   );
 };
 
-export default textEditorContextProvider;
+export default TextEditorContextProvider;
