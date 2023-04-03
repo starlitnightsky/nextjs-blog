@@ -55,6 +55,17 @@ export const authOptions: NextAuthOptions = {
     // signIn: "/login",
   },
   adapter: MongoDBAdapter(clientPromise),
+  callbacks: {
+    async jwt({ token, user, account, profile, isNewUser }: any) {
+      return {
+        token,
+        email: user?.email,
+        role: user?.role,
+        createdAt: user?.createdAt,
+        _id: user?._id,
+      };
+    },
+  },
   session: { strategy: "jwt" },
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,

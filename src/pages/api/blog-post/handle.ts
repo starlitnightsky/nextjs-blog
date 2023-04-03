@@ -8,33 +8,48 @@
 
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next";
+
+import { getToken } from "next-auth/jwt";
 import { apiCreateBlogPost } from "../../../../apiControllers/blogPost/apiHandleController";
-import { authOptions } from "../auth/[...nextauth]";
+
+const secret = process.env.NEXTAUTH_JWT_SECRET;
 
 export default async function blogPostHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   /**
-   *  get session for api route protection
+   *  If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
+   *
+   * modified token object contains email , role , createdAt , _id
    */
-  const session = await getServerSession(req, res, authOptions);
+  //
+  const token: any = await getToken({ req, secret });
 
-  if (!session) {
-    // if valid session does not exist
-    res.status(401).json({ message: "You must be logged in." });
+  if (!token) {
+    // if valid token does not exist
+    res.status(401).json({
+      message: "no valid token",
+      token,
+    });
     return;
   }
 
-  // valid sessison then move forward with rest of code
-  // test getserver session is working
-  // return res.json({
-  //   message: "Success",
-  // });
+  if (!["admin", "author"].includes(token?.token?.role)) {
+    // if curent user not an admin or author
+    // catch them
+    res.status(401).json({
+      message: "only admin / author accoutns allowed",
+      token,
+    });
+    return;
+  }
 
   if (req.method !== "POST") {
-    return res.status(400).json({ error: "POST methods only" });
+    return res.status(400).json({
+      error: "POST methods only",
+      token,
+    });
   }
 
   if (req.method === "POST") {
