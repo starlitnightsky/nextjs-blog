@@ -16,8 +16,9 @@ const DisplayPost = ({
   return (
     <>
       <div>
-        <p>{parsedFullBlogPostData?.description}</p>
         <h1>{parsedFullBlogPostData?.title}</h1>
+        <p>{parsedFullBlogPostData?.description}</p>
+
         <p>
           {formatDistanceToNow(new Date(parsedFullBlogPostData?.updatedAt), {
             addSuffix: true,
