@@ -27,7 +27,7 @@ const DisplayPost = ({
   }
 
   if (status === "loading") {
-    return <h5>"Loading...."</h5>;
+    return <h5>Loading....</h5>;
   }
 
   return (
