@@ -139,21 +139,59 @@ h1 {
 }
 .blog-header-bg {
   background-color: #e3f2fd93;
+  transition: 0.35s;
+  transition-timing-function: ease;
 }
+
+.blog-header-bg:hover {
+  background-color: #e3f2fda6;
+}
+
 .blog-post-bg {
   background-color: #e3f2fd67;
+  transition: 0.35s;
+  transition-timing-function: ease;
 }
+
+.blog-post-bg:hover {
+  background-color: #e3f2fd75;
+}
+
 .blog-comment-bg {
   background-color: #e3f2fd40;
+  transition: 0.35s;
+  transition-timing-function: ease;
+}
+
+.blog-comment-bg:hover {
+  background-color: #e3f2fd62;
 }
 
 .blog-list-bg {
   background-color: #e3f2fd88;
+  transition: 0.35s;
+  transition-timing-function: ease;
 }
 
 .blog-list-bg:hover {
   background-color: #e3f2fdd7;
   cursor: pointer;
+}
+
+.login-form-bg {
+  background-color: #e3f2fd88;
+  transition: 0.35s;
+  transition-timing-function: ease;
+}
+
+.login-form-bg:hover {
+  background-color: #c4e2f867;
+}
+
+.login-form {
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
 }
 
 .break-word {
