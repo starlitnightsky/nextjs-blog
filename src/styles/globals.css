@@ -228,3 +228,26 @@ h1 {
     margin-right: 0;
   }
 }
+
+
+
+/* for custom scroll bar */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #aac5da41; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a8cae29a; 
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #76b6e7af; 
+}
