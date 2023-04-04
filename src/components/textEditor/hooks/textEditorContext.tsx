@@ -31,8 +31,8 @@ export const textEditorContext = createContext<ITextEditorContext>({
 });
 
 const TextEditorContextProvider = ({ children }: Props) => {
-  const [title, setTitle] = useState<string>("oof");
-  const [description, setDescription] = useState<string>("des");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [delta, setDelta] = useState("");
   const [htmlData, setHtmlData] = useState<string>("");
 

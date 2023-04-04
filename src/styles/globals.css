@@ -194,6 +194,12 @@ h1 {
   margin: 0 auto;
 }
 
+.texteditor-form {
+  max-width: 1000px;
+  display: block;
+  margin: 0 auto;
+}
+
 .break-word {
   word-break: break-word;
 }

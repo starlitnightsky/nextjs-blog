@@ -14,11 +14,13 @@ const TextEditor = () => {
   }, [htmlData]);
 
   return (
-    <>
-      <InputTextComponent />
-      <QuillComponent />
-      <ButtonCancelSave />
-    </>
+    <div className="login-form-bg  pt-5 pb-5 pe-md-5 px-md-5 mb-5">
+      <div className="texteditor-form">
+        <InputTextComponent />
+        <QuillComponent />
+        <ButtonCancelSave />
+      </div>
+    </div>
   );
 };
 

@@ -23,14 +23,14 @@ const ButtonCancelSave = () => {
   };
 
   return (
-    <>
-      <button className="btn btn-outline-secondary" onClick={redirectHome}>
+    <div className="text-end">
+      <button className="btn btn-outline-secondary mx-2" onClick={redirectHome}>
         Cancel
       </button>
-      <button className="btn btn-outline-success" onClick={onClickHandler}>
+      <button className="btn btn-outline-success mx-2" onClick={onClickHandler}>
         Save
       </button>
-    </>
+    </div>
   );
 };
 
