@@ -31,7 +31,7 @@ const DisplayPost = ({
   }
 
   return (
-    <article className="blog-post px-3 py-5 p-md-5 ">
+    <article className="blog-post px-md-5 py-5 p-md-5 ">
       <div className="container single-col-max-width mb-5 blog-header-bg p-5">
         <header className="blog-post-header ">
           <h1 className="mb-2">{parsedFullBlogPostData?.title}</h1>

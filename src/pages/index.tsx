@@ -29,7 +29,7 @@ export default function Home({
 
   return (
     <>
-      <div className="blog-list px-3 py-5 p-md-5">
+      <div className="blog-list px-md-5 py-5 p-md-5">
         <div className="container single-col-max-width">
           {parsedBlogPosts.map((blogPost: IBlogPost) => (
             <BlogPostComponent key={blogPost._id} blogPost={blogPost} />
