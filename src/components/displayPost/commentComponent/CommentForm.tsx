@@ -7,25 +7,28 @@ const CommentForm = () => {
   const [hide, setHide] = useState(true);
   return (
     <>
-      <button onClick={() => setHide((prev) => !prev)}>
+      <button
+        className="btn btn-outline-primary mb-5"
+        onClick={() => setHide((prev) => !prev)}
+      >
         {hide ? "Post a comment" : "Hide"}
       </button>
       {!hide && (
-        <>
-          <div>
+        <div className="card p-5 mb-5">
+          <div className="row mb-2">
             <CommentTextArea
               commentContent={commentContent}
               setCommentContent={setCommentContent}
             />
           </div>
-          <div>
+          <div className="text-end">
             <ButtonResetPost
               commentContent={commentContent}
               setCommentContent={setCommentContent}
               setHide={setHide}
             />
           </div>
-        </>
+        </div>
       )}
     </>
   );

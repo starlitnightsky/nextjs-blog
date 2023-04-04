@@ -44,7 +44,7 @@ const DisplayPost = ({
           </p>
         </header>
       </div>
-      <div>
+      <div className="mb-5">
         <div
           className="blog-post-body"
           dangerouslySetInnerHTML={{ __html: parsedFullBlogPostData?.bodyHTML }}

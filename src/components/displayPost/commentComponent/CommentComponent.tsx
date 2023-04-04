@@ -8,16 +8,14 @@ interface Props {
 
 const CommentComponent = ({ commentData }: Props) => {
   return (
-    <>
-      <p>-----</p>
+    <div className="card mb-5 p-3">
       <p>{commentData.commentContent}</p>
       <p>
         {formatDistanceToNow(new Date(commentData.createdAt), {
           addSuffix: true,
         })}
       </p>
-      <p>-----</p>
-    </>
+    </div>
   );
 };
 

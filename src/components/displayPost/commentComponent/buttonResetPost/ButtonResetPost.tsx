@@ -63,8 +63,15 @@ const ButtonResetPost = ({
 
   return (
     <>
-      <button onClick={resetHandler}>Reset</button>
-      <button onClick={postCommentHandler}>Post</button>
+      <button className="btn btn-outline-secondary mx-2" onClick={resetHandler}>
+        Reset
+      </button>
+      <button
+        className="btn btn-outline-success mx-2"
+        onClick={postCommentHandler}
+      >
+        Post
+      </button>
     </>
   );
 };

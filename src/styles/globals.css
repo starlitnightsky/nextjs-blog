@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #4f4f4f;
     /* overflow-x: hidden; */
+    font-family: "Poppins", sans-serif !important;
   }
   h1,
   .h1,
@@ -103,11 +105,14 @@ body {
   }
   .blog-post .blog-post-body h1,
   .blog-post .blog-post-body .h1 {
-    font-size: 2.125rem;
+    font-size: 2rem;
+  }
+  h1{
+    font-size: 2rem;
   }
   .blog-post .blog-post-body h2,
   .blog-post .blog-post-body .h2 {
-    font-size: 2rem;
+    font-size: 1.95rem;
   }
   .blog-post .blog-post-body h3,
   .blog-post .blog-post-body .h3 {
@@ -126,6 +131,13 @@ body {
     font-size: 1.125rem;
   }
   
+.blog-post .blog-post-body img{
+  height: auto;
+  width: 250px;
+  object-fit: cover;
+
+}
+
   .break-word{
     word-break: break-word;
   }
