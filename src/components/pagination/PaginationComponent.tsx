@@ -48,9 +48,7 @@ const PaginationComponent = ({ allBlogCount }: Props) => {
             >
               <Link
                 className="page-link"
-                href={` ${
-                  asPath === "/" && curr === 0 ? "/" : "/part/" + curr
-                }`}
+                href={` ${curr == 0 ? "/" : "/part/" + curr}`}
               >
                 {curr + 1}
               </Link>
