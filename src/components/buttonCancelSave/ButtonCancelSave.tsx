@@ -24,8 +24,12 @@ const ButtonCancelSave = () => {
 
   return (
     <>
-      <button onClick={redirectHome}>Cancel</button>
-      <button onClick={onClickHandler}>Save</button>
+      <button className="btn btn-outline-secondary" onClick={redirectHome}>
+        Cancel
+      </button>
+      <button className="btn btn-outline-success" onClick={onClickHandler}>
+        Save
+      </button>
     </>
   );
 };

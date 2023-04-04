@@ -21,24 +21,26 @@ const DisplayPost = ({
   }
 
   if (status === "loading") {
-    return "Loading....";
+    return <h5>"Loading...."</h5>;
   }
 
   return (
-    <>
-      <div>
-        <h1>{parsedFullBlogPostData?.title}</h1>
-        <p>{parsedFullBlogPostData?.description}</p>
+    <article className="blog-post px-3 py-5 p-md-5">
+      <div className="container single-col-max-width">
+        <header className="blog-post-header">
+          <h1 className="mb-2">{parsedFullBlogPostData?.title}</h1>
+          <p className="meta mb-3">{parsedFullBlogPostData?.description}</p>
 
-        <p>
-          {formatDistanceToNow(new Date(parsedFullBlogPostData?.updatedAt), {
-            addSuffix: true,
-          })}
-        </p>
+          <p className="date">
+            {formatDistanceToNow(new Date(parsedFullBlogPostData?.updatedAt), {
+              addSuffix: true,
+            })}
+          </p>
+        </header>
       </div>
       <div>
         <div
-          className=""
+          className="blog-post-body"
           dangerouslySetInnerHTML={{ __html: parsedFullBlogPostData?.bodyHTML }}
         />
       </div>
@@ -51,7 +53,7 @@ const DisplayPost = ({
       {parsedAllCurrentCommentData?.map((commentData: any) => (
         <CommentComponent key={commentData?._id} commentData={commentData} />
       ))}
-    </>
+    </article>
   );
 };
 

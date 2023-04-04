@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Header = () => {
@@ -8,9 +9,9 @@ const Header = () => {
         style={{ backgroundColor: "#e3f2fd" }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="/">
             Meme Blog
-          </a>
+          </Link>
           <button
             className="navbar-toggler collapsed"
             type="button"
@@ -25,24 +26,34 @@ const Header = () => {
           <div className="navbar-collapse collapse" id="navbarColor03">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" href="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
-                </a>
+                <Link className="nav-link" href="/login">
+                  Login
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
+                <Link className="nav-link" href="/signup">
+                  Signup
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  About
-                </a>
+                <Link className="nav-link" href="/create">
+                  Create post
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/">
+                  Account Options
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/panel">
+                  Activity Panel
+                </Link>
               </li>
             </ul>
             <form className="d-flex">
