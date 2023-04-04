@@ -31,9 +31,9 @@ const DisplayPost = ({
   }
 
   return (
-    <article className="blog-post px-3 py-5 p-md-5">
-      <div className="container single-col-max-width">
-        <header className="blog-post-header">
+    <article className="blog-post px-3 py-5 p-md-5 ">
+      <div className="container single-col-max-width mb-5 blog-header-bg p-5">
+        <header className="blog-post-header ">
           <h1 className="mb-2">{parsedFullBlogPostData?.title}</h1>
           <p className="meta mb-3">{parsedFullBlogPostData?.description}</p>
 
@@ -44,7 +44,7 @@ const DisplayPost = ({
           </p>
         </header>
       </div>
-      <div className="mb-5">
+      <div className="blog-post-bg p-5 mb-5">
         <div
           className="blog-post-body"
           dangerouslySetInnerHTML={{ __html: parsedFullBlogPostData?.bodyHTML }}

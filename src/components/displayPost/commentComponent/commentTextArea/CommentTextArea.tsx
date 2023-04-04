@@ -9,6 +9,7 @@ const CommentTextArea = ({ commentContent, setCommentContent }: any) => {
         onChange={(e) => setCommentContent(e.target.value)}
         placeholder="ya ?"
         className=" form-control"
+        style={{ minHeight: "200px" }}
       />
     </div>
   );
