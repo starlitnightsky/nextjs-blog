@@ -2,7 +2,12 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const PaginationComponent = ({ allBlogCount }: any) => {
+
+interface Props {
+  allBlogCount: string | number;
+}
+
+const PaginationComponent = ({ allBlogCount }: Props) => {
   const itemsPerPage = 3;
   let paginationCount = 0;
   if (typeof allBlogCount === "number") {

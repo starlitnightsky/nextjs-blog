@@ -6,6 +6,12 @@ import { useSession } from "next-auth/react";
 import { IUserSession } from "@/pages/api/blog-post/handle";
 import LoginComponent from "../login/Login";
 
+export interface ICommentData {
+  _id: string;
+  commentContent: string;
+  createdAt: string;
+}
+
 const DisplayPost = ({
   parsedFullBlogPostData,
   parsedAllCurrentCommentData,
@@ -50,7 +56,7 @@ const DisplayPost = ({
       ) : (
         <LoginComponent />
       )}
-      {parsedAllCurrentCommentData?.map((commentData: any) => (
+      {parsedAllCurrentCommentData?.map((commentData: ICommentData) => (
         <CommentComponent key={commentData?._id} commentData={commentData} />
       ))}
     </article>

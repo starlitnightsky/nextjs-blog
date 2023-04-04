@@ -1,17 +1,22 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ButtonReadMore from "./buttonReadMore/ButtonReadMore";
+import { IBlogPost } from "@/pages";
 
-const BlogPostComponent = ({ blogPost }: any) => {
+interface Props {
+  blogPost: IBlogPost;
+}
+
+const BlogPostComponent: FunctionComponent<Props> = ({ blogPost }) => {
   return (
     <div className="item mb-5 break-word">
       <div className="row g-2 g-xl-0">
         <div className="col-md-10 blog-details ">
-          <h3 className="title mb-1">{blogPost.title}</h3>
+          <h3 className="title mb-1">{blogPost?.title}</h3>
           <div className="meta mb-1">
             <span className="date">
               Updated:
-              {formatDistanceToNow(new Date(blogPost.updatedAt), {
+              {formatDistanceToNow(new Date(blogPost?.updatedAt), {
                 addSuffix: true,
               })}
             </span>

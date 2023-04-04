@@ -2,10 +2,14 @@ import BlogPostComponent from "@/components/blogPostComponent/BlogPostComponent"
 import PaginationComponent from "@/components/pagination/PaginationComponent";
 import { serverSideBlogCount } from "@/getServerSideCalls/getServerSideCalls-Index-Pagination";
 import { useState, useEffect } from "react";
-
+import type { GetServerSideProps } from "next";
 import { Oval } from "react-loader-spinner";
+import { IBlogCountPostInParts, IBlogPost } from "..";
 
-export default function PartHome({ allBlogCount, allBlogPostsInParts }: any) {
+export default function PartHome({
+  allBlogCount,
+  allBlogPostsInParts,
+}: IBlogCountPostInParts) {
   const [loading, setLoading] = useState<boolean>(true);
   console.log(allBlogCount, "getServerSideProps");
   const parsedBlogPosts = JSON.parse(allBlogPostsInParts);
@@ -40,7 +44,7 @@ export default function PartHome({ allBlogCount, allBlogPostsInParts }: any) {
       </div>
 
       <div>
-        {parsedBlogPosts.map((blogPost: any) => (
+        {parsedBlogPosts.map((blogPost: IBlogPost) => (
           <BlogPostComponent key={blogPost._id} blogPost={blogPost} />
         ))}
       </div>
@@ -51,7 +55,7 @@ export default function PartHome({ allBlogCount, allBlogPostsInParts }: any) {
 }
 
 // This gets called on every request
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
   // Fetch data from external API
   // const res = await fetch(domain + "/api/blog-post/get-all");
   // const data = await res.json();
@@ -63,4 +67,4 @@ export async function getServerSideProps(context: any) {
 
   // Pass data to the page via props
   return { props: { allBlogCount, allBlogPostsInParts } };
-}
+};

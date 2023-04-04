@@ -1,5 +1,13 @@
-import { useState, createContext, SetStateAction, Dispatch } from "react";
-
+import {
+  useState,
+  createContext,
+  SetStateAction,
+  Dispatch,
+  ReactNode,
+} from "react";
+interface Props {
+  children: ReactNode;
+}
 interface ITextEditorContext {
   title: string;
   setTitle: Dispatch<SetStateAction<string>>;
@@ -22,7 +30,7 @@ export const textEditorContext = createContext<ITextEditorContext>({
   setHtmlData: () => {},
 });
 
-const TextEditorContextProvider = ({ children }: any) => {
+const TextEditorContextProvider = ({ children }: Props) => {
   const [title, setTitle] = useState<string>("oof");
   const [description, setDescription] = useState<string>("des");
   const [delta, setDelta] = useState("");

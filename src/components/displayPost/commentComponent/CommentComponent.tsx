@@ -1,6 +1,12 @@
 import React from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-const CommentComponent = ({ commentData }: any) => {
+import { ICommentData } from "../DisplayPost";
+
+interface Props {
+  commentData: ICommentData;
+}
+
+const CommentComponent = ({ commentData }: Props) => {
   return (
     <>
       <p>-----</p>

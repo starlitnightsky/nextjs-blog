@@ -1,7 +1,12 @@
 import { routerPush } from "@/util/routerPush";
 import React from "react";
 
-const ButtonReadMore = ({ postId }: any) => {
+
+interface Props {
+  postId: string;
+}
+
+const ButtonReadMore = ({ postId }: Props) => {
   const redirectPost = (postId: string) => {
     routerPush(`/post/${postId}`);
   };

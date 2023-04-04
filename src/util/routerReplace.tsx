@@ -6,7 +6,7 @@ import Router from "next/router";
  *
  *
  */
-const rotuerReplace = (aspath: any) => {
+const rotuerReplace = (aspath: string) => {
   // Router.reload();
   // this does an actual reload , does work but replaces fills the need
 
