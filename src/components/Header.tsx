@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
@@ -39,6 +40,15 @@ const Header = () => {
                 <Link className="nav-link" href="/signup">
                   Signup
                 </Link>
+              </li>
+              <li className="nav-item">
+                <span
+                  style={{ cursor: "pointer" }}
+                  className="nav-link"
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </span>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/create">
