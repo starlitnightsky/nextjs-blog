@@ -11,13 +11,15 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   useEffect(() => {
-    import("bootstrap/dist/js/bootstrap");
+    import("bootstrap/dist/js/bootstrap" as any);
   }, []);
 
   return (
     <SessionProvider session={session}>
       <Header />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </SessionProvider>
   );
 }

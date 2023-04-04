@@ -20,7 +20,7 @@ const PaginationComponent = ({ allBlogCount }: any) => {
   return (
     <>
       <nav aria-label="...">
-        <ul className="pagination pagination-md justify-content-end">
+        <ul className="pagination pagination-md justify-content-center">
           {/* <li className="page-item active" aria-current="page">
             <span className="page-link">1</span>
           </li>

@@ -4,23 +4,27 @@ import ButtonReadMore from "./buttonReadMore/ButtonReadMore";
 
 const BlogPostComponent = ({ blogPost }: any) => {
   return (
-    <>
-      <div>
-        <p>-----------------</p>
-        <p>
-          {formatDistanceToNow(new Date(blogPost.updatedAt), {
-            addSuffix: true,
-          })}
-        </p>
-
-        <p>{blogPost.title}</p>
-        <p>{blogPost.description}</p>
-        <p>button component</p>
-        <p>-----------------</p>
+    <div className="item mb-5 break-word">
+      <div className="row g-2 g-xl-0">
+        <div className="col-md-10 blog-details ">
+          <h3 className="title mb-1">{blogPost.title}</h3>
+          <div className="meta mb-1">
+            <span className="date">
+              Updated:
+              {formatDistanceToNow(new Date(blogPost.updatedAt), {
+                addSuffix: true,
+              })}
+            </span>
+          </div>
+          <div className="intro ">
+            <p>{blogPost.description}</p>
+          </div>
+        </div>
+        <div className="col-md-2 d-flex align-items-center justify-content-center">
+          <ButtonReadMore postId={blogPost._id} />
+        </div>
       </div>
-
-      <ButtonReadMore postId={blogPost._id} />
-    </>
+    </div>
   );
 };
 
