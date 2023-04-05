@@ -1,6 +1,8 @@
-NextJS Blog With:
-Deployed link : 
-Deployed docs path:
+# NextJS Blog With:
+
+### Deployed link : 
+
+### Deployed docs path:
 
 You can also access docs on local server by navigating to "/docs/index.html"
 
