@@ -170,3 +170,70 @@ export const apiGetAllCurrentAuthorAdminBlogPost = async (
 
   return res.status(200).json(allPosts);
 };
+
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @param session 
+ * @returns 
+ * 
+ * delete post - requires author / admin accout
+ * 
+ * admin can delete all records
+ * 
+ * author can only delete current author created account
+ */
+export const apiDeletePostCurrentAuthorAdmin = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: any
+) => {
+  connectDb();
+
+  const currentUserRole = session?.user?.role;
+  const currentUserId = session?.user?._id;
+  const postId = req?.body?.postId;
+
+  let allPosts: undefined | PostData | PostData[] | any[];
+
+  if (!mongoose.Types.ObjectId.isValid(postId)) {
+    return res.status(404).json({ error: "no such record" });
+  }
+
+  if (currentUserRole === "admin") {
+    // if admin find the post and delete
+    try {
+      allPosts = await Post.findOneAndDelete({ _id: postId }).sort({
+        updatedAt: -1,
+      });
+
+      if (!allPosts) {
+        return res.status(404).json({ error: "does not match/ no records" });
+      }
+    } catch (error: ErrorData | any) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else if (currentUserRole === "author") {
+    // if authror check for postid and check if the authorid matches and delete
+    try {
+      allPosts = await Post.findOneAndDelete({
+        _id: postId,
+        authorId: currentUserId,
+      }).sort({
+        updatedAt: -1,
+      });
+
+      if (!allPosts) {
+        return res.status(404).json({
+          error:
+            "does not match. Check ids / check if current user has permission.",
+        });
+      }
+    } catch (error: ErrorData | any) {
+      return res.status(400).json({ error: error.message });
+    }
+  }
+
+  return res.status(202).json({ success: "deleted post" });
+};

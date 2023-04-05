@@ -10,7 +10,7 @@ const UserPanel = () => {
       response = await fetch("/api/blog-post/handle", {
         method: type,
         body: JSON.stringify({
-          oof: "oof",
+          postId: "642af454f26d7436cfe93c27",
         }),
         headers: {
           "Content-Type": "application/json",
