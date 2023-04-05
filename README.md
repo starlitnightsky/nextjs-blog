@@ -1,8 +1,8 @@
-# NextJS Blog With:
+# NextJS Blog - Next Auth - MonogoDB - Bootstrap - Crud:
 
-### Deployed link : 
+### Deployed link : [`Live Site`](https://nextjs-blog-with-auth.vercel.app/)
 
-### Deployed docs path:
+### Deployed docs path: [`Deployed Docs`](https://nextjs-blog-with-auth.vercel.app/docs/index.html)
 
 You can also access docs on local server by navigating to "/docs/index.html"
 
