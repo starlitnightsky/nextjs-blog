@@ -77,13 +77,13 @@ const Header = () => {
 
               {!["admin", "author", "reader"].includes(session?.user?.role) &&
                 notLoggedInOptions.map((currNavData) => (
-                  <li
-                    key={currNavData?.name}
-                    className={`nav-link ${
-                      asPath === currNavData?.url && "active"
-                    }`}
-                  >
-                    <Link className="nav-link" href={currNavData?.url}>
+                  <li key={currNavData?.name} className="nav-item">
+                    <Link
+                      className={`nav-link ${
+                        asPath === currNavData?.url && "active"
+                      }`}
+                      href={currNavData?.url}
+                    >
                       {currNavData?.name}
                     </Link>
                   </li>
@@ -109,7 +109,12 @@ const Header = () => {
                 authorAdminloggedInOptions.map((currNavData) => {
                   return (
                     <li key={currNavData?.name} className="nav-item">
-                      <Link className="nav-link" href={currNavData?.url}>
+                      <Link
+                        className={`nav-link ${
+                          asPath === currNavData?.url && "active"
+                        }`}
+                        href={currNavData?.url}
+                      >
                         {currNavData?.name}
                       </Link>
                     </li>
