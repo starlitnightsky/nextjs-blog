@@ -49,6 +49,8 @@ Features of this project:
 
 - Bootstrap based UI & responsive .
 
+- Pagination - optimized pagination , loads only the required fields for the current page number . Responses would contain only title and description data . The body content , image data and comments are loaded when a single post is selected.
+
 - Typescript codebase.
 
 - Codebase documented - also makes use of typedoc to generate docs .
@@ -72,8 +74,9 @@ Features of this project:
 - Post page - serverside rendered & users can post comments using getServerSideProps
 - Create post page - uses Quill text editor and can handle images
 - Makes use of react functional component design patterns and hooks
-- Search Posts
+- Search Posts using search function 
 - Bootstrap & CSS UI & viewport responsive.
+- Pagination - splits blog post data into smaller chunks & fetched based on the pagination
 - Client side & server side validations for forms & requests.
 - File versioning - using git/ github
 - Readme & dedicated docs
