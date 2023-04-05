@@ -20,7 +20,7 @@ const BlogPostComponent: FunctionComponent<Props> = ({ blogPost }) => {
     >
       <div className="row g-2 g-xl-0">
         <div className="col-md-10 blog-details ">
-          <h3 className="title mb-1">{blogPost?.title}</h3>
+          <h3 className="title mb-1">{blogPost?.title?.substring(0, 50)}</h3>
           <div className="meta mb-1">
             <span className="date">
               Updated:
@@ -31,7 +31,7 @@ const BlogPostComponent: FunctionComponent<Props> = ({ blogPost }) => {
             </span>
           </div>
           <div className="intro ">
-            <p>{blogPost.description}</p>
+            <p>{blogPost.description?.substring(0, 200)}</p>
           </div>
         </div>
         <div className="col-md-2 d-flex align-items-center justify-content-center">
