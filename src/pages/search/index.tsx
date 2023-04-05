@@ -15,6 +15,7 @@ const SearchPage = () => {
             {parsedBlogPosts.map((blogPost: IBlogPost) => (
               <BlogPostComponent key={blogPost._id} blogPost={blogPost} />
             ))}
+            {parsedBlogPosts.length === 0 && <h3>No posts yet /Loading</h3>}
           </div>
         </div>
       </>
