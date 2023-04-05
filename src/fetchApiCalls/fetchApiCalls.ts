@@ -200,7 +200,10 @@ export const fetchEditBlogPost = async (
 };
 
 
-export const fetchSearchBlogList = async (searchText: string) => {
+export const fetchSearchBlogList = async (
+  searchText: string,
+  setParsedBlogPosts: any
+) => {
   try {
     const response = await fetch("/api/blog-search/get", {
       method: "POST",
@@ -215,13 +218,16 @@ export const fetchSearchBlogList = async (searchText: string) => {
 
     if (!response.ok) {
       console.log("error", json.error);
+      setParsedBlogPosts([]);
     }
 
     if (response.ok) {
       console.log("success", json);
+      setParsedBlogPosts(json);
     }
   } catch (error) {
     console.log("error", error);
+    setParsedBlogPosts([]);
   }
 };
 

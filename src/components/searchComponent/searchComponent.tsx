@@ -1,11 +1,18 @@
 import { fetchSearchBlogList } from "@/fetchApiCalls/fetchApiCalls";
 import React, { useState } from "react";
 
-const SearchComponent = () => {
+const SearchComponent = ({ setParsedBlogPosts }: any) => {
   const [searchText, setSearchText] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const searchHandler = async () => {
-    await fetchSearchBlogList(searchText);
+    if (searchText === "") {
+      setError("Cannot be empty");
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+
+    await fetchSearchBlogList(searchText, setParsedBlogPosts);
   };
 
   return (
@@ -29,6 +36,10 @@ const SearchComponent = () => {
           Search
         </button>
       </form>
+      <br />
+      <div className="text-center">
+        {error && <span className="error-text p-2">{error}</span>}
+      </div>
     </div>
   );
 };
