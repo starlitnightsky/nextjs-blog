@@ -15,42 +15,20 @@ export default function PartHome({
   const parsedBlogPosts = JSON.parse(allBlogPostsInParts);
   console.log(parsedBlogPosts, "parsedBlogPosts");
 
-  return (
-    <div className="container-fluid mt-5">
-      <h6 className="mb-3 text-center mb-3">Welcome!</h6>
-      <div
-        className="row g-5 text-center  border border-secondary rounded"
-        //@ts-ignore
-        style={{ "--bs-border-opacity": 0.25 }}
-      >
-        {!loading ? (
-          <p>oof</p>
-        ) : (
-          <div className="d-flex flex-wrap align-items-center justify-content-center mb-2">
-            <Oval
-              height={80}
-              width={80}
-              color="#4fa94d"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="oval-loading"
-              secondaryColor="#4fa94d"
-              strokeWidth={2}
-              strokeWidthSecondary={2}
-            />
-          </div>
-        )}
-      </div>
 
-      <div>
-        {parsedBlogPosts.map((blogPost: IBlogPost) => (
-          <BlogPostComponent key={blogPost._id} blogPost={blogPost} />
-        ))}
+
+  return (
+    <>
+      <div className="blog-list px-md-5 py-5 p-md-5">
+        <div className="container single-col-max-width">
+          {parsedBlogPosts.map((blogPost: IBlogPost) => (
+            <BlogPostComponent key={blogPost._id} blogPost={blogPost} />
+          ))}
+        </div>
       </div>
 
       <PaginationComponent allBlogCount={allBlogCount} />
-    </div>
+    </>
   );
 }
 
