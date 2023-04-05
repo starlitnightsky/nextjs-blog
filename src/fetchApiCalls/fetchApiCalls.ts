@@ -1,4 +1,5 @@
 import { routerPush } from "@/util/routerPush";
+import routerReload from "@/util/routerReload";
 
 //fetch api call functions here
 export const domain = "http://localhost:3000";
@@ -108,8 +109,6 @@ export const fetchCreateBlogComment = async (
   }
 };
 
-
-
 export const fetchGetAuthorAdminBlogList = async (setParsedBlogPosts: any) => {
   try {
     const response = await fetch("/api/blog-post/handle", {
@@ -131,5 +130,33 @@ export const fetchGetAuthorAdminBlogList = async (setParsedBlogPosts: any) => {
   } catch (error) {
     console.log("error", error);
     return { error };
+  }
+};
+
+export const fetchDelteAuthorAdminBlogPost = async (postId: string) => {
+  try {
+    const response = await fetch("/api/blog-post/handle", {
+      method: "DELETE",
+      body: JSON.stringify({
+        postId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("error", json.error);
+      routerReload();
+    }
+
+    if (response.ok) {
+      console.log("success", json);
+      routerReload();
+    }
+  } catch (error) {
+    console.log("error", error);
+    routerReload();
   }
 };

@@ -1,3 +1,4 @@
+import { fetchDelteAuthorAdminBlogPost } from "@/fetchApiCalls/fetchApiCalls";
 import { routerPush } from "@/util/routerPush";
 import React, { useState } from "react";
 
@@ -23,7 +24,8 @@ const ButtonDeleteEdit = ({ postId }: Props) => {
 
   const comfirmDeleteHandler = (postId: string) => {
     console.log("postId", postId);
-    setConfirmDel(false);
+    // setConfirmDel(false);
+    fetchDelteAuthorAdminBlogPost(postId);
   };
 
   return (
