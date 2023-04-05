@@ -18,9 +18,9 @@ const DisplayPost = ({
 }: any) => {
   const { data: sessionData, status } = useSession();
   const session: IUserSession = sessionData as IUserSession;
-  console.log(session, status);
+  // console.log(session, status);
 
-  console.log(parsedFullBlogPostData);
+  // console.log(parsedFullBlogPostData);
 
   if (typeof parsedFullBlogPostData === "undefined") {
     return <h2>Please check blog post id .</h2>;

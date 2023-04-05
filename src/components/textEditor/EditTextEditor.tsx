@@ -8,8 +8,8 @@ import ButtonCancelUpdate from "../buttonCancelUpdate/ButtonCancelUpdate";
 const EditTextEditor = ({ parsedFullBlogPostData }: any) => {
   const { title, htmlData, setDelta, setTitle, setDescription } =
     useTextEditorContext();
-  console.log(parsedFullBlogPostData, "editor");
-  console.log(title, "using the usecontext");
+  // console.log(parsedFullBlogPostData, "editor");
+  // console.log(title, "using the usecontext");
   useEffect(() => {
     if (!htmlData) return;
     // console.log(htmlData);

@@ -21,7 +21,7 @@ export default EditPost;
 
 // This gets called on every request
 export async function getServerSideProps(context: any) {
-  console.log("oofffffffff");
+  // console.log("oofffffffff");
 
   const { fullBlogPostData } = await serverSideBlogSinglePost(context);
 

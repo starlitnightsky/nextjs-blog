@@ -26,9 +26,9 @@ export const serverSideBlogSinglePost: (context: any) => Promise<any> = async (
   connectDb();
   const { query, params, resolvedUrl } = context;
 
-  console.log("oofffffffff", query);
-  console.log("oofffffffff", params);
-  console.log("oofffffffff", resolvedUrl);
+  // console.log("oofffffffff", query);
+  // console.log("oofffffffff", params);
+  // console.log("oofffffffff", resolvedUrl);
 
   let fullBlogPostData: any = await getFullBlogPost(params);
   let allCurrentCommentData: any = await getAllBlogComments(params);

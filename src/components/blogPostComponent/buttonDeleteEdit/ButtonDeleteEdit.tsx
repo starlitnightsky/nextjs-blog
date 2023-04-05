@@ -14,7 +14,7 @@ const ButtonDeleteEdit = ({ postId }: Props) => {
   };
 
   const deleteHandler = (postId: string) => {
-    console.log("postId", postId);
+    // console.log("postId", postId);
     setConfirmDel((prev) => !prev);
   };
 
@@ -23,7 +23,7 @@ const ButtonDeleteEdit = ({ postId }: Props) => {
   };
 
   const comfirmDeleteHandler = (postId: string) => {
-    console.log("postId", postId);
+    // console.log("postId", postId);
     // setConfirmDel(false);
     fetchDelteAuthorAdminBlogPost(postId);
   };

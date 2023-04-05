@@ -47,7 +47,7 @@ export async function getServerSideProps(context: any) {
   // Fetch data from external API
   // const res = await fetch(domain + "/api/blog-post/get-all");
   // const data = await res.json();
-  console.log("oofffffffff");
+  // console.log("oofffffffff");
 
   const { allBlogCount, allBlogPostsInParts } = await serverSideBlogCount(
     context

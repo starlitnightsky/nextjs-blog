@@ -15,7 +15,7 @@ const ButtonCancelUpdate = () => {
   const [error, setError] = useState<string | null>(null);
 
   const { query } = useRouter();
-  console.log(query?.id, "query id");
+  // console.log(query?.id, "query id");
 
   const onClickHandler = async () => {
     if (
@@ -36,7 +36,7 @@ const ButtonCancelUpdate = () => {
         bodyHTML,
         authorId,
      */
-    console.log("oof ");
+    // console.log("oof ");
     await fetchEditBlogPost(
       query?.id as string,
       title,

@@ -43,9 +43,9 @@ const QuillComponent = () => {
     source: string,
     editor: any
   ) => {
-    console.log({ value, delta, source, editor });
-    console.log(editor.getContents());
-    console.log(editor.getHTML());
+    // console.log({ value, delta, source, editor });
+    // console.log(editor.getContents());
+    // console.log(editor.getHTML());
     setDelta(editor.getContents());
     setHtmlData(editor.getHTML());
   };

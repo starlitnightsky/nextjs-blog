@@ -25,9 +25,9 @@ export const serverSideBlogCount: (context: any) => Promise<any> = async (
   connectDb();
   const { query, params, resolvedUrl } = context;
 
-  console.log("oofffffffff", query);
-  console.log("oofffffffff", params);
-  console.log("oofffffffff", resolvedUrl);
+  // console.log("oofffffffff", query);
+  // console.log("oofffffffff", params);
+  // console.log("oofffffffff", resolvedUrl);
 
   let allBlogCount: number = await getBlogCountOnly();
   let allBlogPostsInParts: any = await getBlogPostsInParts(params);

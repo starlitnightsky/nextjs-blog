@@ -14,13 +14,13 @@ const PaginationComponent = ({ allBlogCount }: Props) => {
     paginationCount = Math.ceil(allBlogCount / itemsPerPage);
   }
 
-  console.log(paginationCount, "pagination count");
+  // console.log(paginationCount, "pagination count");
 
-  console.log(Array.from(Array(paginationCount).keys()), "pagination count");
+  // console.log(Array.from(Array(paginationCount).keys()), "pagination count");
   const paginationArray = Array.from(Array(paginationCount).keys());
 
   const { asPath, query } = useRouter();
-  console.log(asPath, query, "router data");
+  // console.log(asPath, query, "router data");
 
   return (
     <>

@@ -16,7 +16,7 @@ const ButtonResetPost = ({
   let commenterId: string = session?.user?._id;
 
   const { query, asPath } = useRouter();
-  console.log(query, "router data");
+  // console.log(query, "router data");
   const postId = query?.id as string;
   const [error, setError] = useState<string | null>(null);
   /**
@@ -24,7 +24,7 @@ const ButtonResetPost = ({
    *
    */
   const resetHandler = () => {
-    console.log("reset", commentContent);
+    // console.log("reset", commentContent);
     setCommentContent("");
   };
 
@@ -40,7 +40,7 @@ const ButtonResetPost = ({
    */
   const postCommentHandler = async () => {
     if (commentContent !== "") {
-      console.log("post this", commentContent);
+      // console.log("post this", commentContent);
 
       const success = await fetchCreateBlogComment(
         commenterId,
@@ -58,7 +58,7 @@ const ButtonResetPost = ({
       return;
     }
 
-    console.log("empty", commentContent);
+    // console.log("empty", commentContent);
     setError("Cannot be empty!");
     setTimeout(() => setError(null), 3000);
   };

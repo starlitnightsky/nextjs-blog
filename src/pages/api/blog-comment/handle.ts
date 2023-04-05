@@ -34,7 +34,7 @@ export default async function blogCommentHandler(
   }
 
   if (req.method === "POST") {
-    console.log(req.body);
+    // console.log(req.body);
     apiCreateBlogComment(req, res);
   }
 }

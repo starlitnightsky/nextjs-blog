@@ -8,7 +8,7 @@ import { IUserSession } from "../api/blog-post/handle";
 const CreatePost = () => {
   const { data: sessionData, status } = useSession();
   const session: IUserSession = sessionData as IUserSession;
-  console.log(session, status);
+  // console.log(session, status);
 
   if (status === "loading") {
     return "Loading or not authenticated...";
