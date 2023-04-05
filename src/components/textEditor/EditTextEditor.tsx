@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import ButtonCancelUpdate from "../buttonCancelUpdate/ButtonCancelUpdate";
 
 const EditTextEditor = ({ parsedFullBlogPostData }: any) => {
-  const { title, htmlData, setDelta, setTitle, setDescription } =
+  const { title, htmlData, setDelta, setTitle, setDescription, setHtmlData } =
     useTextEditorContext();
   // console.log(parsedFullBlogPostData, "editor");
   // console.log(title, "using the usecontext");
@@ -24,6 +24,8 @@ const EditTextEditor = ({ parsedFullBlogPostData }: any) => {
       typeof parsedFullBlogPostData?.description !== "undefined"
     ) {
       setDelta(parsedFullBlogPostData?.bodyHTML);
+      setHtmlData(parsedFullBlogPostData?.bodyHTML);
+
       setTitle(parsedFullBlogPostData?.title);
       setDescription(parsedFullBlogPostData?.description);
     }
