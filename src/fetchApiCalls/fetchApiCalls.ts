@@ -160,3 +160,41 @@ export const fetchDelteAuthorAdminBlogPost = async (postId: string) => {
     routerReload();
   }
 };
+
+
+export const fetchEditBlogPost = async (
+  postId: string,
+  title: string,
+  description: string,
+  bodyDelta: any,
+  bodyHTML: string
+) => {
+  const newDelta = JSON.stringify(bodyDelta);
+  try {
+    const response = await fetch("/api/blog-post/handle", {
+      method: "PUT",
+      body: JSON.stringify({
+        postId,
+        title,
+        description,
+        bodyDelta: newDelta,
+        bodyHTML,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("error", json.error);
+    }
+
+    if (response.ok) {
+      console.log("success", json);
+      routerPush("/");
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+};

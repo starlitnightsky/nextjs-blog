@@ -14,6 +14,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import {
   apiCreateBlogPost,
   apiDeletePostCurrentAuthorAdmin,
+  apiEditPostCurrentAuthorAdmin,
   apiGetAllCurrentAuthorAdminBlogPost,
 } from "../../../../apiControllers/blogPost/apiHandleController";
 import { Session } from "next-auth";
@@ -69,11 +70,13 @@ export default async function blogPostHandler(
   }
 
   if (req.method === "PUT") {
-    return res.status(200).json({
-      msg: "PUT req",
-      id: req?.body,
-      session,
-    });
+    apiEditPostCurrentAuthorAdmin(req, res, session);
+
+    // return res.status(200).json({
+    //   msg: "PUT req",
+    //   id: req?.body,
+    //   session,
+    // });
   }
 
   if (req.method === "DELETE") {

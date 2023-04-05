@@ -3,6 +3,7 @@ import InputTextComponent from "./inputText/InputTextComponent";
 import QuillComponent from "./quill/QuillComponent";
 import { useTextEditorContext } from "./hooks/useTextEditorContext";
 import { useEffect } from "react";
+import ButtonCancelUpdate from "../buttonCancelUpdate/ButtonCancelUpdate";
 
 const EditTextEditor = ({ parsedFullBlogPostData }: any) => {
   const { title, htmlData, setDelta, setTitle, setDescription } =
@@ -33,6 +34,7 @@ const EditTextEditor = ({ parsedFullBlogPostData }: any) => {
       <div className="texteditor-form">
         <InputTextComponent />
         <QuillComponent />
+        <ButtonCancelUpdate />
       </div>
     </div>
   );
