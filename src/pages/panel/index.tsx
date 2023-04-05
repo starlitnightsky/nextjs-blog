@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { IBlogPost } from "..";
+import { fetchGetAuthorAdminBlogList } from "@/fetchApiCalls/fetchApiCalls";
+
+import PanelPostComponent from "@/components/blogPostComponent/PanelPostComponent";
 
 const UserPanel = () => {
+  const [parsedBlogPosts, setParsedBlogPosts] = useState<any[] | any>([]);
+  useEffect(() => {
+    (async () => await fetchGetAuthorAdminBlogList(setParsedBlogPosts))();
+  }, []);
+
+  useEffect(() => {
+    console.log(parsedBlogPosts);
+  }, [parsedBlogPosts]);
 
   const clickHandler = async (type: string) => {
     let response;
@@ -33,11 +45,26 @@ const UserPanel = () => {
     console.log(data, "put");
   };
 
+  // return (
+  //   <div>
+  //     <button onClick={() => clickHandler("PUT")}>PUT</button>
+  //     <button onClick={() => clickHandler("DELETE")}>DELETE</button>
+  //   </div>
+  // );
+
+  // const parsedBlogPosts = JSON.parse(allBlogPostsInParts);
+  console.log(parsedBlogPosts, "parsedBlogPosts");
+
   return (
-    <div>
-      <button onClick={() => clickHandler("PUT")}>PUT</button>
-      <button onClick={() => clickHandler("DELETE")}>DELETE</button>
-    </div>
+    <>
+      <div className="blog-list px-md-5 py-5 p-md-5">
+        <div className="container single-col-max-width">
+          {parsedBlogPosts?.map((blogPost: IBlogPost) => (
+            <PanelPostComponent key={blogPost._id} blogPost={blogPost} />
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

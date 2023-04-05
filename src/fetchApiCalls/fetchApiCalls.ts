@@ -107,3 +107,29 @@ export const fetchCreateBlogComment = async (
     return { sucess: false };
   }
 };
+
+
+
+export const fetchGetAuthorAdminBlogList = async (setParsedBlogPosts: any) => {
+  try {
+    const response = await fetch("/api/blog-post/handle", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("error", json.error);
+    }
+
+    if (response.ok) {
+      console.log("success", json);
+      setParsedBlogPosts(json);
+    }
+  } catch (error) {
+    console.log("error", error);
+    return { error };
+  }
+};
