@@ -1,6 +1,7 @@
 import { IUserSession } from "@/pages/api/blog-post/handle";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const notLoggedInOptions = [
@@ -30,6 +31,8 @@ const authorAdminloggedInOptions = [
 const Header = () => {
   const { data: sessionData, status } = useSession();
   const session: IUserSession = sessionData as IUserSession;
+  const { asPath } = useRouter();
+  console.log(asPath);
   return (
     <>
       <nav
@@ -54,14 +57,32 @@ const Header = () => {
           <div className="navbar-collapse collapse" id="navbarColor03">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" href="/">
+                <Link
+                  className={`nav-link ${asPath === "/" && "active"}`}
+                  aria-current="page"
+                  href="/"
+                >
                   Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${asPath === "/search" && "active"}`}
+                  aria-current="page"
+                  href="/search"
+                >
+                  Search
                 </Link>
               </li>
 
               {!["admin", "author", "reader"].includes(session?.user?.role) &&
                 notLoggedInOptions.map((currNavData) => (
-                  <li key={currNavData?.name} className="nav-item">
+                  <li
+                    key={currNavData?.name}
+                    className={`nav-link ${
+                      asPath === currNavData?.url && "active"
+                    }`}
+                  >
                     <Link className="nav-link" href={currNavData?.url}>
                       {currNavData?.name}
                     </Link>
@@ -72,7 +93,12 @@ const Header = () => {
                 readerloggedInOptions.map((currNavData) => {
                   return (
                     <li key={currNavData?.name} className="nav-item">
-                      <Link className="nav-link" href={currNavData?.url}>
+                      <Link
+                        className={`nav-link ${
+                          asPath === currNavData?.url && "active"
+                        }`}
+                        href={currNavData?.url}
+                      >
                         {currNavData?.name}
                       </Link>
                     </li>
@@ -102,17 +128,6 @@ const Header = () => {
                 </li>
               )}
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-primary" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </div>
       </nav>
