@@ -11,7 +11,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 
-import { apiCreateBlogPost } from "../../../../apiControllers/blogPost/apiHandleController";
+import {
+  apiCreateBlogPost,
+  apiGetAllCurrentAuthorAdminBlogPost,
+} from "../../../../apiControllers/blogPost/apiHandleController";
 import { Session } from "next-auth";
 
 const secret = process.env.NEXTAUTH_JWT_SECRET;
@@ -55,16 +58,27 @@ export default async function blogPostHandler(
     return;
   }
 
-  if (req.method !== "POST") {
-    return res.status(400).json({
-      error: "POST methods only",
-      session,
-    });
+  if (req.method === "GET") {
+    apiGetAllCurrentAuthorAdminBlogPost(req, res, session);
   }
 
   if (req.method === "POST") {
     console.log(req.body);
     apiCreateBlogPost(req, res);
+  }
+
+  if (req.method === "PUT") {
+    return res.status(200).json({
+      msg: "PUT req",
+      session,
+    });
+  }
+
+  if (req.method === "DELETE") {
+    return res.status(200).json({
+      msg: "DELETE req",
+      session,
+    });
   }
 }
 

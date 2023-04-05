@@ -16,6 +16,15 @@ interface ErrorData {
   message: string;
 }
 
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @returns 
+ * 
+ * create a new blog post 
+ * needs author / admin account
+ */
 export const apiCreateBlogPost = async (
   req: NextApiRequest,
   res: NextApiResponse
@@ -55,6 +64,14 @@ export const apiCreateBlogPost = async (
   return res.status(201).json(newPost);
 };
 
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @returns 
+ * 
+ * get parted blog posts 
+ */
 export const apiGetAllBlogPost = async (
   req: NextApiRequest,
   res: NextApiResponse
@@ -82,6 +99,14 @@ export const apiGetAllBlogPost = async (
   return res.status(200).json(allPosts);
 };
 
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @returns 
+ * 
+ * get blog post count
+ */
 export const apiGetAllBlogCount = async (
   req: NextApiRequest,
   res: NextApiResponse
@@ -96,4 +121,52 @@ export const apiGetAllBlogCount = async (
   }
 
   return res.status(200).json(allPostsCount);
+};
+
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @param session 
+ * @returns 
+ * 
+ * get all current author created blog posts
+ * if admin get all posts
+ */
+export const apiGetAllCurrentAuthorAdminBlogPost = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  session: any
+) => {
+  connectDb();
+
+  const currentUserRole = session?.user?.role;
+  const currentUserId = session?.user?._id;
+  let allPosts: undefined | PostData | PostData[] | any[];
+
+  if (currentUserRole === "admin") {
+    // if admin get all posts
+    try {
+      allPosts = await Post.find({},{bodyHTML:0,
+        bodyDelta:0
+      }).sort({
+        updatedAt: -1,
+      });
+    } catch (error: ErrorData | any) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else if (currentUserRole === "author") {
+    // if authror get all current author created posts
+    try {
+      allPosts = await Post.find({ authorId: currentUserId },{bodyHTML:0,
+        bodyDelta:0
+      }).sort({
+        updatedAt: -1,
+      });
+    } catch (error: ErrorData | any) {
+      return res.status(400).json({ error: error.message });
+    }
+  }
+
+  return res.status(200).json(allPosts);
 };
