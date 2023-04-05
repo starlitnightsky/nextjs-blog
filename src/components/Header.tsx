@@ -14,12 +14,7 @@ const notLoggedInOptions = [
   },
 ];
 
-const readerloggedInOptions = [
-  {
-    name: "Activity Panel",
-    url: "/panel",
-  },
-];
+const readerloggedInOptions: any[] = [];
 
 const authorAdminloggedInOptions = [
   {
@@ -27,12 +22,8 @@ const authorAdminloggedInOptions = [
     url: "/create",
   },
   {
-    name: "Activity Panel",
+    name: "Panel",
     url: "/panel",
-  },
-  {
-    name: "Account Options",
-    url: "/",
   },
 ];
 

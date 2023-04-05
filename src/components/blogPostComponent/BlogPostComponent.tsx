@@ -24,9 +24,10 @@ const BlogPostComponent: FunctionComponent<Props> = ({ blogPost }) => {
           <div className="meta mb-1">
             <span className="date">
               Updated:
-              {formatDistanceToNow(new Date(blogPost?.updatedAt), {
-                addSuffix: true,
-              })}
+              {" " +
+                formatDistanceToNow(new Date(blogPost?.updatedAt), {
+                  addSuffix: true,
+                })}
             </span>
           </div>
           <div className="intro ">
