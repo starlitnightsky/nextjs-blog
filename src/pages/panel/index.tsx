@@ -78,6 +78,7 @@ const UserPanel = () => {
             {parsedBlogPosts?.map((blogPost: IBlogPost) => (
               <PanelPostComponent key={blogPost._id} blogPost={blogPost} />
             ))}
+            {parsedBlogPosts.length === 0 && <h3>No posts yet</h3>}
           </div>
         </div>
       </>
