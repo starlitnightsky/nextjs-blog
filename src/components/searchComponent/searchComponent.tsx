@@ -17,7 +17,7 @@ const SearchComponent = ({ setParsedBlogPosts }: any) => {
 
   return (
     <div className="login-form-bg pt-5 pb-5 pe-md-5 px-md-5 mt-5">
-      <form className="d-flex login-form">
+      <div className="d-flex login-form">
         <input
           className="form-control me-2"
           type="search"
@@ -35,7 +35,7 @@ const SearchComponent = ({ setParsedBlogPosts }: any) => {
         >
           Search
         </button>
-      </form>
+      </div>
       <br />
       <div className="text-center">
         {error && <span className="error-text p-2">{error}</span>}

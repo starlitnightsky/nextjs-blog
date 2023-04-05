@@ -11,14 +11,23 @@ export const apiSearchBlogPost = async (
   connectDb();
 
   const { searchText } = req.body;
+  // console.log(searchText);
 
   if (searchText === "") {
     return res.status(400).json({ error: "fill all fields" });
   }
   let allPosts: undefined | PostData | PostData[] | any[];
   try {
-    allPosts = await Post.find({}).sort({
-      updatedAt: -1,
+    // allPosts = await Post.find({}).sort({
+    //   updatedAt: -1,
+    // });
+
+    allPosts = await Post.find({
+      $or: [
+        { title: { $regex: searchText, $options: "i" } },
+        { description: { $regex: searchText, $options: "i" } },
+        { bodyHTML: { $regex: searchText, $options: "i" } },
+      ],
     });
   } catch (error: any) {
     return res.status(400).json({ error: error.message });
