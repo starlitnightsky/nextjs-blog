@@ -18,6 +18,7 @@ export const signupUser = async (
 
     if (!response.ok) {
       console.log(json.error);
+      return {error:json.error}
     }
     if (response.ok) {
       console.log("oof", json);
@@ -26,5 +27,6 @@ export const signupUser = async (
     }
   } catch (error) {
     console.log("error", error);
+    return {error}
   }
 };

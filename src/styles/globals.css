@@ -200,6 +200,16 @@ h1 {
   margin: 0 auto;
 }
 
+.error-text {
+  background-color: #f58608b4;
+  transition: 0.35s;
+  transition-timing-function: ease;
+}
+
+.error-text:hover {
+  background-color: #f54b08b4;
+}
+
 .break-word {
   word-break: break-word;
 }
@@ -235,8 +245,6 @@ h1 {
   }
 }
 
-
-
 /* for custom scroll bar */
 ::-webkit-scrollbar {
   width: 15px;
@@ -244,16 +252,15 @@ h1 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #aac5da41; 
+  background: #aac5da41;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #a8cae29a; 
-
+  background: #a8cae29a;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #76b6e7af; 
+  background: #76b6e7af;
 }

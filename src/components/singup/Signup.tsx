@@ -8,11 +8,27 @@ const SignupComponent = (): JSX.Element => {
   const [role, setRole] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   const registerUser = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    signupUser(email, password, role);
+    if (
+      email === "" ||
+      password === "" ||
+      !["reader", "author", "admin"].includes(role)
+    ) {
+      setError("Fill/select all fields!");
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+    const sentReqErrored = (await signupUser(email, password, role)) as any;
+
+    if (sentReqErrored?.error) {
+      setError(sentReqErrored?.error);
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
   };
   return (
     <div className="login-form-bg pt-5 pb-5 px-md-5 pe-md-5 mb-5">
@@ -24,18 +40,29 @@ const SignupComponent = (): JSX.Element => {
 
         <form className="card p-5" onSubmit={registerUser}>
           <label htmlFor="role">role</label>
-          <input
+          {/* <input
             id="role"
             type="text"
             placeholder="role"
             onChange={(e) => setRole(e.target.value)}
             required
-          />
+          /> */}
+          <select
+            className="form-select"
+            id="role"
+            aria-label="Default select example"
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <option value="select">Select Role</option>
+            <option value="reader">Reader</option>
+            <option value="author">Author</option>
+            <option value="admin">Admin</option>
+          </select>
           <br />
           <label htmlFor="email">Email</label>
           <input
             id="email"
-            type="text"
+            type="email"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -47,7 +74,6 @@ const SignupComponent = (): JSX.Element => {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
           <br />
           <input
@@ -55,6 +81,10 @@ const SignupComponent = (): JSX.Element => {
             value={"Signup"}
             type="submit"
           />
+          <br />
+          <div className="text-center">
+            {error && <span className="error-text p-2">{error}</span>}
+          </div>
         </form>
       </div>
     </div>

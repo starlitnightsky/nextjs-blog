@@ -4,7 +4,7 @@ import rotuerReplace from "@/util/routerReplace";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 const ButtonResetPost = ({
   commentContent,
@@ -18,7 +18,7 @@ const ButtonResetPost = ({
   const { query, asPath } = useRouter();
   console.log(query, "router data");
   const postId = query?.id as string;
-
+  const [error, setError] = useState<string | null>(null);
   /**
    * reset the text area
    *
@@ -59,19 +59,30 @@ const ButtonResetPost = ({
     }
 
     console.log("empty", commentContent);
+    setError("Cannot be empty!");
+    setTimeout(() => setError(null), 3000);
   };
 
   return (
     <>
-      <button className="btn btn-outline-secondary mx-2" onClick={resetHandler}>
-        Reset
-      </button>
-      <button
-        className="btn btn-outline-success mx-2"
-        onClick={postCommentHandler}
-      >
-        Post
-      </button>
+      <div>
+        <button
+          className="btn btn-outline-secondary mx-2"
+          onClick={resetHandler}
+        >
+          Reset
+        </button>
+        <button
+          className="btn btn-outline-success mx-2"
+          onClick={postCommentHandler}
+        >
+          Post
+        </button>
+      </div>
+
+      <div className="text-center">
+        {error && <span className="error-text p-2">{error}</span>}
+      </div>
     </>
   );
 };

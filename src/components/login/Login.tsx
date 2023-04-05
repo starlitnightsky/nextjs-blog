@@ -5,6 +5,24 @@ import { loginUser } from "./loginUtil";
 const LoginComponent = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: any) => {
+    if (email === "" || password === "") {
+      e.preventDefault();
+      setError("Fill all fields!");
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+
+    const sentReqErrored = await loginUser(e, email, password);
+
+    if (sentReqErrored?.error) {
+      setError(sentReqErrored?.error);
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+  };
 
   return (
     <div className="login-form-bg pt-5 pb-5 px-md-5 pe-md-5 mb-5">
@@ -16,14 +34,11 @@ const LoginComponent = () => {
           </Link>
         </section>
 
-        <form
-          className="card p-5"
-          onSubmit={(e) => loginUser(e, email, password)}
-        >
+        <form className="card p-5" onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="email">Email</label>
           <input
             id="email"
-            type="text"
+            type="email"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -35,7 +50,6 @@ const LoginComponent = () => {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
           <br />
           <input
@@ -43,6 +57,10 @@ const LoginComponent = () => {
             value={"Login"}
             type="submit"
           />
+          <br />
+          <div className="text-center">
+            {error && <span className="error-text p-2">{error}</span>}
+          </div>
         </form>
       </div>
     </div>

@@ -29,6 +29,10 @@ export const loginUser = async (
     callbackUrl: `${window.location.origin}`,
   });
   res.error ? console.log(res.error) : routerController();
+
+  if (res.error) return { error: res.error };
+
+ 
 };
 
 /**
