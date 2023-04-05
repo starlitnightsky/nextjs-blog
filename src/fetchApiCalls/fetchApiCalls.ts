@@ -1,3 +1,5 @@
+import { routerPush } from "@/util/routerPush";
+
 //fetch api call functions here
 export const domain = "http://localhost:3000";
 /**
@@ -45,6 +47,7 @@ export const fetchCreateBlogPost = async (
 
     if (response.ok) {
       console.log("success", json);
+      routerPush("/");
     }
   } catch (error) {
     console.log("error", error);
@@ -71,7 +74,6 @@ export const fetchGetBlogCount = async () => {
   }
 };
 
-
 export const fetchCreateBlogComment = async (
   commenterId: string,
   commentContent: string,
@@ -93,15 +95,15 @@ export const fetchCreateBlogComment = async (
 
     if (!response.ok) {
       console.log("error", json.error);
-      return {sucess:false}
+      return { sucess: false };
     }
 
     if (response.ok) {
       console.log("success", json);
-      return {sucess:true}
+      return { sucess: true };
     }
   } catch (error) {
     console.log("error", error);
-    return {sucess:false}
+    return { sucess: false };
   }
 };
