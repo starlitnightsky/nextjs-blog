@@ -32,7 +32,7 @@ const Header = () => {
   const { data: sessionData, status } = useSession();
   const session: IUserSession = sessionData as IUserSession;
   const { asPath } = useRouter();
-  console.log(asPath);
+  // console.log(asPath);
   return (
     <>
       <nav
